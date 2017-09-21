@@ -79,7 +79,9 @@ ActiveSelected<link rel="import" href="../polymer/polymer.html">
       this.addEventListener('keydown', e => this._onKeydown(e));
       this.addEventListener('keyup', e => this._onKeyup());
       this.addEventListener('click', e => this._toggle());
-      this.setAttribute('tabindex', 0);
+      if (!this.hasAttribute('tabindex')) {
+        this.tabIndex = 0;
+      }
     }
 
     _toggle() {
@@ -91,7 +93,7 @@ ActiveSelected<link rel="import" href="../polymer/polymer.html">
       this.setAttribute('aria-disabled', disabled ? 'true' : 'false');
       this.style.pointerEvents = disabled ? 'none' : '';
       if (disabled) {
-        this._oldTabIndex = this.tabIndex;
+        this._oldTabIndex = this.tabIndex < 0 ? 0 : this.tabIndex;
         this._setFocused(false);
         this.tabIndex = -1;
         this.blur();
