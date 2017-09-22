@@ -18,7 +18,7 @@ This program is available under Apache License Version 2.0, available at https:/
         /**
          * The CSS selector used to get items
          */
-        items: {
+        itemsSelector: {
           type: String,
           value: '*'
         },
@@ -50,7 +50,7 @@ This program is available under Apache License Version 2.0, available at https:/
       this.addEventListener('keydown', e => this._onKeydown(e));
 
       Polymer.RenderStatus.afterNextRender(this, () => {
-        this.items = Array.from(this.querySelectorAll(this.itemsSelector || '*'));
+        this._setItems(Array.from(this.querySelectorAll(this.itemsSelector)));
         // `selected` property could be set before items are ready.
         this._selectedChanged(this.selected);
       });
