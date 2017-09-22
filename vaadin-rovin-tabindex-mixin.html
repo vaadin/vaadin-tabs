@@ -4,7 +4,7 @@ Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 -->
 
-<link rel="import" href="../polymer/polymer.html">
+<linkey rel="import" href="../polymer/polymer.html">
 
 <script>
     window.Vaadin = window.Vaadin || {};
@@ -42,17 +42,34 @@ This program is available under Apache License Version 2.0, available at https:/
     }
 
     _onKeydown(e) {
-      const k = e.which, l = this.items.length;
+      const key = e.which;
       // arrow left or right
-      if (l && (k == 37 || k == 39)) {
-        let curIdx = this.items.indexOf(this.focused), newIdx = curIdx;
+      if (key == 37 || key == 39) {
+        this._moveToNext(key == 39, false);
+      }
+    }
+
+    // Move to the next/previous tab based on the ltr direction
+    // if select is set, then it selects the tab instead of focusing it
+    _moveToNext(ltr, doSelect) {
+      const l = this.items.length;
+      if (l) {
+        let curIdx = this.items.indexOf(doSelect ? this.selected : this.focused);
+        let newIdx = curIdx;
         do {
-          newIdx += (k == 37 ? -1 : 1);
+          newIdx += ltr ? 1 : -1;
           newIdx = newIdx < 0 ? l - 1: newIdx == l ? 0 : newIdx;
         } while (this.items[newIdx].disabled && newIdx != curIdx);
         this.items[curIdx].tabIndex = -1;
         this.items[newIdx].tabIndex = 0;
-        this.items[newIdx].focus();
+        if (doSelect) {
+          this.items[curIdx].selected = false;
+          this.items[newIdx].selected = true;
+        } else {
+          this.items[newIdx].focus();
+        }
+        // TODO: move the current item to the scroller viewport
+        // this.$.scroll.scrollLeft = this.items[newIdx].offsetLeft;
       }
     }
 
