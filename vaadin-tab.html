@@ -40,6 +40,20 @@ This program is available under Apache License Version 2.0, available at https:/
         border: none;
       }
 
+      [part="close-button"] {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+
+      [part="close-button"]::before {
+        content: "x";
+      }
+
+      :host([hidden]) {
+        display: none;
+      }
+
       :host([focused]) {
         border: 2px solid #03a9f4;
       }
@@ -62,6 +76,7 @@ This program is available under Apache License Version 2.0, available at https:/
     </style>
     <div id="button" type="button" part="button">
       <slot></slot>
+      <div part="close-button" on-tap="_close" role="button"></div>
     </div>
   </template>
   <script>
