@@ -4,7 +4,7 @@ Copyright (c) 2017 Vaadin Ltd.
 This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
 -->
 
-ActiveSelected<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html">
 
 <script>
     window.Vaadin = window.Vaadin || {};
@@ -86,6 +86,7 @@ ActiveSelected<link rel="import" href="../polymer/polymer.html">
 
     _toggle() {
       this.selected = !this.selected;
+      this.dispatchEvent(new CustomEvent('selected', {bubbles: true, composed: true, detail: this.selected}));
       this.setAttribute('aria-pressed', this.selected ? 'true' : 'false');
     }
 
@@ -111,7 +112,8 @@ ActiveSelected<link rel="import" href="../polymer/polymer.html">
     }
 
     _onKeydown(event) {
-      if (event.which === /*space*/ 32 || event.which === /*enter*/ 13) {
+      // space or enter
+      if (event.which == 32 || event.which == 13) {
         event.preventDefault();
         event.stopImmediatePropagation();
         this._setActive(true);
