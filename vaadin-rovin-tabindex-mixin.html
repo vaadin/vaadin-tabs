@@ -1,0 +1,77 @@
+<!--
+@license
+Copyright (c) 2017 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+    window.Vaadin = window.Vaadin || {};
+
+  /**
+   * A mixin providing rovin tabindex
+   */
+  Vaadin.RovinTabindexMixin = superClass => class VaadinRovinTabindexMixin extends superClass {
+    static get properties() {
+      return {
+        items: {
+          type: Array
+        }
+      };
+    }
+
+    ready() {
+      super.ready();
+      this.addEventListener('selected', e => this._onSelected(e));
+      this.addEventListener('keydown', e => this._onKeydown(e));
+
+      Polymer.RenderStatus.beforeNextRender(this, () => {
+        this.items = Array.from(this.querySelectorAll(this.itemsSelector || '*'));
+        // Select first item is none selected
+        this.items[0] && !this.selected && this._select(this.items[0]);
+      });
+    }
+
+    get selected() {
+      return this.items.reduce((prev, el) => prev || (el.selected ? el : null), null);
+    }
+
+    get focused() {
+      return this.items.reduce((prev, el) => prev || (el.focused ? el : null), null);
+    }
+
+    _onKeydown(e) {
+      const k = e.which, l = this.items.length;
+      // arrow left or right
+      if (l && (k == 37 || k == 39)) {
+        let curIdx = this.items.indexOf(this.focused), newIdx = curIdx;
+        do {
+          newIdx += (k == 37 ? -1 : 1);
+          newIdx = newIdx < 0 ? l - 1: newIdx == l ? 0 : newIdx;
+        } while (this.items[newIdx].disabled && newIdx != curIdx);
+        this.items[curIdx].tabIndex = -1;
+        this.items[newIdx].tabIndex = 0;
+        this.items[newIdx].focus();
+      }
+    }
+
+    _select(item) {
+      if (!item.disabled) {
+        this.items.forEach(e => {
+          e.selected = e == item ? true : false;
+          e.tabIndex = e == item ? 0 : -1;
+        });
+      }
+    }
+
+    _onSelected(e) {
+      if (!e.detail) {
+        // Prevent unselecting current item;
+        e.target.selected = true;
+      } else {
+        this._select(e.target);
+      }
+    }
+  };
+</script>
