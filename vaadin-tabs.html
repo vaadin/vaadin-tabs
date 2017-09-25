@@ -21,7 +21,7 @@ This program is available under Apache License Version 2.0, available at https:/
       }
 
       .vaadin-tabs-wrapper {
-        flex-grow: 0.5;
+        flex-grow: 1;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
@@ -52,15 +52,27 @@ This program is available under Apache License Version 2.0, available at https:/
       [part="left-button"],
       [part="right-button"] {
         opacity: 0.5;
+        padding: 3px;
+        height: 12px;
+        width: 12px;
+        line-height: 11px;
+        font-size: 10px;
+        border: solid 1px grey;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      [hidden] {
+        display: none;
       }
 
       [part="right-button"]::after {
-        padding-left: 8px;
         content: '>';
       }
 
       [part="left-button"]::after {
-        padding-right: 8px;
         content: '<';
       }
 
@@ -68,15 +80,6 @@ This program is available under Apache License Version 2.0, available at https:/
         :host {
           padding-left: 0;
           padding-right: 0;
-        }
-
-        [part="left-button"],
-        [part="right-button"] {
-          flex: none;
-        }
-
-        .vaadin-tabs-wrapper {
-          flex-grow: 1;
         }
       }
     </style>
