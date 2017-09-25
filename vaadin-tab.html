@@ -120,6 +120,10 @@ This program is available under Apache License Version 2.0, available at https:/
           this.setAttribute('role', 'button');
           this.$.button.setAttribute('role', 'presentation');
         }
+
+        _close() {
+          this.dispatchEvent(new CustomEvent('close', {bubbles: true, composed: true}));
+        }
       }
 
       customElements.define(TabElement.is, TabElement);
