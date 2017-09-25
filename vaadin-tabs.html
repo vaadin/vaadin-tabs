@@ -110,11 +110,15 @@ This program is available under Apache License Version 2.0, available at https:/
           return 'vaadin-tabs';
         }
 
+        static get observers() {
+          return ['_hideScrollButtons(items.*)'];
+        }
+
         ready() {
           super.ready();
-          window.addEventListener('resize', () => this._setHidden());
-          this.$.scroll.addEventListener('scroll', () => this._setHidden());
-          Polymer.RenderStatus.afterNextRender(this, () => this._setHidden());
+          window.addEventListener('resize', () => this._hideScrollButtons());
+          this.$.scroll.addEventListener('scroll', () => this._hideScrollButtons());
+          Polymer.RenderStatus.afterNextRender(this, () => this._hideScrollButtons());
         }
 
         _scrollLeft() {
@@ -125,11 +129,13 @@ This program is available under Apache License Version 2.0, available at https:/
           this.$.scroll.scrollLeft += this.$.scroll.offsetWidth;
         }
 
-        _setHidden() {
-          const hidden = this.$.scroll.scrollWidth == this.$.scroll.offsetWidth;
-          this._leftHidden = hidden || !hidden && this.$.scroll.scrollLeft == 0;
-          this._rightHidden = hidden || !hidden &&
-             this.$.scroll.scrollLeft + this.$.scroll.offsetWidth >= this.$.scroll.scrollWidth - this.$.right.offsetWidth;
+        _hideScrollButtons(change) {
+          if (!change || change.path == 'items.length') {
+            const hidden = this.$.scroll.scrollWidth == this.$.scroll.offsetWidth;
+            this._leftHidden = hidden || !hidden && this.$.scroll.scrollLeft == 0;
+            this._rightHidden = hidden || !hidden &&
+               this.$.scroll.scrollLeft + this.$.scroll.offsetWidth >= this.$.scroll.scrollWidth - this.$.right.offsetWidth;
+          }
         }
       }
 
