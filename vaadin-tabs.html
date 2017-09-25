@@ -113,6 +113,13 @@ This program is available under Apache License Version 2.0, available at https:/
           return 'vaadin-tabs';
         }
 
+        static get properties() {
+          return {
+            _leftHidden: Boolean,
+            _rightHidden: Boolean 
+          };
+        }
+
         static get observers() {
           return ['_hideScrollButtons(items.*)'];
         }
