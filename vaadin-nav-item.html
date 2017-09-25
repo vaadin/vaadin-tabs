@@ -9,7 +9,7 @@ This program is available under Apache License Version 2.0, available at https:/
 <link rel="import" href="../vaadin-themable-mixin/vaadin-themable-mixin.html">
 <link rel="import" href="vaadin-nav-item-mixin.html">
 
-<dom-module id="vaadin-tab-default-theme">
+<dom-module id="vaadin-nav-item-default-theme">
   <template>
     <style>
       /* TODO: Implement default theme. */
@@ -17,7 +17,7 @@ This program is available under Apache License Version 2.0, available at https:/
   </template>
 </dom-module>
 
-<dom-module id="vaadin-tab">
+<dom-module id="vaadin-nav-item">
   <template>
     <style>
       :host {
@@ -98,16 +98,16 @@ This program is available under Apache License Version 2.0, available at https:/
 
     {
       /**
-       * `<vaadin-tab>` is a Polymer 2 element providing an accessible and customizable tab.
+       * `<vaadin-nav-item>` is a Polymer 2 element providing an accessible and customizable tab.
        *
        * @memberof Vaadin
        * @mixes Vaadin.NavItemMixin
        * @mixes Vaadin.ThemableMixin
        * @mixes Polymer.GestureEventListeners
        */
-      class TabElement extends Vaadin.NavItemMixin(Vaadin.ThemableMixin(Polymer.GestureEventListeners(Polymer.Element))) {
+      class NavItemElement extends Vaadin.NavItemMixin(Vaadin.ThemableMixin(Polymer.GestureEventListeners(Polymer.Element))) {
         static get is() {
-          return 'vaadin-tab';
+          return 'vaadin-nav-item';
         }
 
         ready() {
@@ -126,13 +126,13 @@ This program is available under Apache License Version 2.0, available at https:/
         }
       }
 
-      customElements.define(TabElement.is, TabElement);
+      customElements.define(NavItemElement.is, NavItemElement);
 
       /**
        * @namespace Vaadin
        */
       window.Vaadin = window.Vaadin || {};
-      Vaadin.TabElement = TabElement;
+      Vaadin.NavItemElement = NavItemElement;
     }
   </script>
 </dom-module>
