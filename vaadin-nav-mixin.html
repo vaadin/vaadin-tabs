@@ -41,6 +41,16 @@ This program is available under Apache License Version 2.0, available at https:/
           reflectToAttribute: true,
           notify: true,
           observer: '_selectedChanged'
+        },
+
+        /**
+         * Define who items are disposed in the dom.
+         * Possible values are: `horizontal|vertical`.
+         */
+        direction: {
+          type: String,
+          value: 'horizontal',
+          reflectToAttribute: true
         }
       };
     }
@@ -63,8 +73,12 @@ This program is available under Apache License Version 2.0, available at https:/
     }
 
     _onKeydown(e) {
-      if (/^(Arrow)?(Left|Right)$/i.test(e.key)) {
-        this._moveToNext(/Right/i.test(e.key), false);
+      const keys = this.direction == 'vertical' ? 'Up|Down' : 'Left|Right';
+      const next = this.direction == 'vertical' ? 'Down' : 'Right';
+      if (RegExp(`^(Arrow)?(${keys})$`).test(e.key)) {
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        this._moveToNext(RegExp(`${next}$`).test(e.key), false);
       }
       // TODO: handle other keys to focus items by the first letter.
     }
