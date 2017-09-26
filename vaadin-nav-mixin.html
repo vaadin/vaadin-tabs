@@ -18,13 +18,6 @@ This program is available under Apache License Version 2.0, available at https:/
     static get properties() {
       return {
         /**
-         * The dom elements we can navigate and select
-         */
-        items: {
-          type: Array,
-          readOnly: true
-        },
-        /**
          * The index of the item selected in the items array
          */
         selected: {
@@ -51,16 +44,15 @@ This program is available under Apache License Version 2.0, available at https:/
       this.addEventListener('selected', e => this._onSelected(e));
       this.addEventListener('keydown', e => this._onKeydown(e));
 
-      Polymer.RenderStatus.afterNextRender(this, () => {
-        this._setItems(Array
-          .from(this.childNodes)
-          .filter(e => e instanceof Vaadin.NavItemElement));
-        this._selectedChanged(this.selected);
-      });
+      Polymer.RenderStatus.afterNextRender(this, () => this._selectedChanged(this.selected));
     }
 
     get focused() {
       return this.getRootNode().activeElement;
+    }
+
+    get _navItems() {
+      return Array.from(this.childNodes).filter(e => e instanceof Vaadin.NavItemElement);
     }
 
     _onKeydown(e) {
@@ -77,33 +69,35 @@ This program is available under Apache License Version 2.0, available at https:/
     // Move to the next/previous tab based on the ltr direction.
     // If doSelect is true, it selects the tab instead of moving the focus to it
     _moveToNext(ltr, doSelect) {
-      const l = this.items.length;
+      const items = this._navItems;
+      const l = items.length;
       if (l) {
-        const curIdx = doSelect ? this.selected : this.items.indexOf(this.focused);
+        const curIdx = doSelect ? this.selected : items.indexOf(this.focused);
         let newIdx = curIdx;
         do {
           newIdx += ltr ? 1 : -1;
           newIdx = newIdx < 0 ? l - 1 : newIdx == l ? 0 : newIdx;
-        } while (this.items[newIdx].disabled && newIdx != curIdx);
-        this.items[curIdx].tabIndex = -1;
-        this.items[newIdx].tabIndex = 0;
+        } while (items[newIdx].disabled && newIdx != curIdx);
+        items[curIdx].tabIndex = -1;
+        items[newIdx].tabIndex = 0;
         if (doSelect) {
-          this.items[curIdx].selected = false;
-          this.items[newIdx].selected = true;
+          items[curIdx].selected = false;
+          items[newIdx].selected = true;
         } else {
-          this.items[newIdx].focus();
-          this.items[curIdx].focused = false;
-          this.items[newIdx].focused = true;
+          items[newIdx].focus();
+          items[curIdx].focused = false;
+          items[newIdx].focused = true;
         }
         // TODO: move the current item to the scroller viewport
-        // this.$.scroll.scrollLeft = this.items[newIdx].offsetLeft;
+        // this.$.scroll.scrollLeft = items[newIdx].offsetLeft;
       }
     }
 
     _selectedChanged(idx) {
-      const item = this.items && this.items[idx < 0 ? 0 : idx];
+      const items = this._navItems;
+      const item = items && items[idx < 0 ? 0 : idx];
       if (item) {
-        this.items.forEach(e => {
+        items.forEach(e => {
           e.selected = e == item ? true : false;
           e.tabIndex = e == item ? 0 : -1;
         });
@@ -115,7 +109,7 @@ This program is available under Apache License Version 2.0, available at https:/
         // Prevent the user to unselect the current item
         e.preventDefault();
       } else {
-        this.selected = this.items.indexOf(e.target);
+        this.selected = this._navItems.indexOf(e.target);
       }
     }
   };
