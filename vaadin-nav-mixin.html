@@ -55,13 +55,13 @@ This program is available under Apache License Version 2.0, available at https:/
       return Array.from(this.childNodes).filter(e => e instanceof Vaadin.NavItemElement);
     }
 
-    _onKeydown(e) {
+    _onKeydown(event) {
       const keys = this.direction == 'vertical' ? 'Up|Down' : 'Left|Right';
       const next = this.direction == 'vertical' ? 'Down' : 'Right';
-      if (RegExp(`^(Arrow)?(${keys})$`).test(e.key)) {
+      if (RegExp(`^(Arrow)?(${keys})$`).test(event.key)) {
         event.preventDefault();
         event.stopImmediatePropagation();
-        this._moveToNext(RegExp(`${next}$`).test(e.key), false);
+        this._moveToNext(RegExp(`${next}$`).test(event.key), false);
       }
       // TODO: handle other keys to focus items by the first letter.
     }
