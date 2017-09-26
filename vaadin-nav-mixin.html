@@ -10,20 +10,13 @@ This program is available under Apache License Version 2.0, available at https:/
   window.Vaadin = window.Vaadin || {};
 
   /**
-   * A mixin providing rovin tabindex
+   * A mixin for `nav` elements, facilitating navigation and selection of childNodes.
+   *
    * @polymerMixin
    */
-  Vaadin.RovinTabindexMixin = superClass => class VaadinNavMixin extends superClass {
+  Vaadin.NavMixin = superClass => class VaadinNavMixin extends superClass {
     static get properties() {
       return {
-        /**
-         * The CSS selector used to get items
-         */
-        itemsSelector: {
-          type: String,
-          value: '*'
-        },
-
         /**
          * The dom elements we can navigate and select
          */
@@ -31,7 +24,6 @@ This program is available under Apache License Version 2.0, available at https:/
           type: Array,
           readOnly: true
         },
-
         /**
          * The index of the item selected in the items array
          */
@@ -42,7 +34,6 @@ This program is available under Apache License Version 2.0, available at https:/
           notify: true,
           observer: '_selectedChanged'
         },
-
         /**
          * Define who items are disposed in the dom.
          * Possible values are: `horizontal|vertical`.
@@ -62,14 +53,14 @@ This program is available under Apache License Version 2.0, available at https:/
 
       Polymer.RenderStatus.afterNextRender(this, () => {
         this._setItems(Array
-          .from(this.querySelectorAll(this.itemsSelector))
+          .from(this.childNodes)
           .filter(e => e instanceof Vaadin.NavItemElement));
         this._selectedChanged(this.selected);
       });
     }
 
     get focused() {
-      return this.items.reduce((prev, el) => prev || (el.hasAttribute('focused') ? el : null), null);
+      return this.getRootNode().activeElement;
     }
 
     _onKeydown(e) {

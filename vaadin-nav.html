@@ -107,18 +107,20 @@ This program is available under Apache License Version 2.0, available at https:/
        * `<vaadin-nav>` is a Polymer 2 element for easy switching between different view
        *
        * @memberof Vaadin
-       * @mixes Vaadin.RovinTabindexMixin
+       * @mixes Vaadin.NavMixin
        * @mixes Vaadin.ThemableMixin
        * @demo demo/index.html
        */
-      class VaadinNav extends Vaadin.RovinTabindexMixin(Vaadin.ThemableMixin(Polymer.Element)) {
+      class VaadinNav extends Vaadin.NavMixin(Vaadin.ThemableMixin(Polymer.Element)) {
         static get is() {
           return 'vaadin-nav';
         }
 
         static get properties() {
           return {
+            /* @private */
             _leftHidden: Boolean,
+            /* @private */
             _rightHidden: Boolean
           };
         }
