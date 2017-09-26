@@ -26,9 +26,9 @@
 -->
 ```html
 <vaadin-nav direction="horizontal" selected="2">
-  <vaadin-nav-item>Foo</vaadin-nav-item>
-  <vaadin-nav-item>Bar</vaadin-nav-item>
-  <vaadin-nav-item>Baz</vaadin-nav-item>
+  <vaadin-item>Foo</vaadin-item>
+  <vaadin-item>Bar</vaadin-item>
+  <vaadin-item>Baz</vaadin-item>
 </vaadin-nav>
 ```
 
