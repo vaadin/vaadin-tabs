@@ -56,15 +56,13 @@ This program is available under Apache License Version 2.0, available at https:/
       [part="right-button"] {
         opacity: 0.5;
         padding: 3px;
-        height: 12px;
-        width: 12px;
-        line-height: 11px;
-        font-size: 10px;
-        border: solid 1px grey;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
         cursor: pointer;
+      }
+
+      :host([direction="horizontal"]) [part="left-button"][hidden],
+      :host([direction="horizontal"]) [part="right-button"][hidden] {
+        visibility: hidden;
+        display: block;
       }
 
       [hidden] {
