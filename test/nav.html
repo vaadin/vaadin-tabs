@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <test-fixture id="vaadin-nav">
+  <test-fixture id="nav">
     <template>
       <vaadin-nav>
         <vaadin-nav-item>Foo</vaadin-nav-item>
@@ -49,7 +49,7 @@
     describe('vaadin-nav', () => {
       var nav;
 
-      beforeEach(() => nav = fixture('vaadin-nav'));
+      beforeEach(() => nav = fixture('nav'));
 
       it('should have a correct localName', () => {
         expect(nav.localName).to.equal('vaadin-nav');
