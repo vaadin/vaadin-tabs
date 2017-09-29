@@ -26,6 +26,7 @@ This program is available under Apache License Version 2.0, available at https:/
           observer: '_disabledChanged',
           reflectToAttribute: true
         },
+
         /**
          * If true, the button is in the selected state.
          */
@@ -101,14 +102,16 @@ This program is available under Apache License Version 2.0, available at https:/
     }
 
     _onKeydown(event) {
-      if (/^( |SpaceBar|Enter)$/i.test(event.key)) {
+      // space/enter
+      if (event.keyCode === 13 || event.keyCode === 32) {
         event.preventDefault();
         this._setActive(true);
       }
     }
 
-    _onKeyup() {
-      if (this.hasAttribute('active')) {
+    _onKeyup(event) {
+      // space/enter
+      if (event.keyCode === 13 || event.keyCode === 32) {
         this._setActive(false);
         this._toggle();
       }
