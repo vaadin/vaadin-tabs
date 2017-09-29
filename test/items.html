@@ -69,12 +69,12 @@
         beforeEach(() => {});
 
         it('should not have focused attribute when not focused', () => {
-          expect(item.focused).to.be.false;
+          expect(item.getAttribute('focused')).to.be.null;
         });
 
         it.skip('should have focused attribute when focused', () => {
           item.focus();
-          expect(item.focused).to.be.true;
+          expect(item.getAttribute('focused')).to.equal('');
         });
 
         it('should not have focus-ring attribute when not focused with keyboard', () => {
