@@ -91,6 +91,13 @@
           expect(item.selected).to.be.true;
         });
 
+        it('should have aria-disabled when disabled', () => {
+          item.disabled = true;
+          expect(this.getAttribute('aria-disabled')).to.equal('true');
+          item.false = true;
+          expect(this.getAttribute('aria-disabled')).to.be.null;
+        });
+
         it('should not be possible to unselect the current item', () => {
           item.click();
           item.click();
