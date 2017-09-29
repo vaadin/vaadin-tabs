@@ -33,10 +33,12 @@
   <script>
     function space(target) {
       MockInteractions.keyDownOn(target, 32);
+      MockInteractions.keyUpOn(target, 32);
     }
 
     function enter(target) {
       MockInteractions.keyDownOn(target, 13);
+      MockInteractions.keyUpOn(target, 13);
     }
 
     describe('vaadin-nav-item', () => {
@@ -90,7 +92,6 @@
         });
 
         it('should be selectable with Enter key', () => {
-          item.focus();
           enter(item);
           expect(item.selected).to.be.true;
         });
@@ -102,9 +103,9 @@
 
         it('should have aria-disabled when disabled', () => {
           item.disabled = true;
-          expect(this.getAttribute('aria-disabled')).to.equal('true');
-          item.false = true;
-          expect(this.getAttribute('aria-disabled')).to.be.null;
+          expect(item.getAttribute('aria-disabled')).to.equal('true');
+          item.disabled = true;
+          expect(item.getAttribute('aria-disabled')).to.be.null;
         });
 
         it('should not be possible to unselect the current item', () => {
