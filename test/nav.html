@@ -90,11 +90,13 @@
         });
 
         it('should move focus to next element on "arrow-down" keydown', () => {
+          nav.direction = 'vertical';
           arrowDown(nav);
           expect(nav._navItems[1].selected).to.be.true;
         });
 
         it('should move focus to prev element on "arrow-up" keydown', () => {
+          nav.direction = 'vertical';
           arrowDown(nav);
           arrowUp(nav);
           expect(nav._navItems[0].selected).to.be.true;
