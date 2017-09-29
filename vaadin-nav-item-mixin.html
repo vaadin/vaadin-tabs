@@ -42,7 +42,10 @@ This program is available under Apache License Version 2.0, available at https:/
 
     ready() {
       super.ready();
-      this.addEventListener('focus', e => this._setFocused(true), true);
+      console.log(this)
+      this.addEventListener('focus', e => {
+        this._setFocused(true);
+      }, true);
       this.addEventListener('blur', e => this._setFocused(false), true);
       this.addEventListener('mousedown', e => this._setActive(this._mousedown = true));
       this.addEventListener('mouseup', e => this._setActive(this._mousedown = false));
@@ -65,9 +68,11 @@ This program is available under Apache License Version 2.0, available at https:/
     }
 
     _disabledChanged(disabled) {
-      this.setAttribute('aria-disabled', disabled);
       if (disabled) {
+        this.setAttribute('aria-disabled', 'true');
         this.blur();
+      } else {
+        this.removeAttribute('aria-disabled');
       }
     }
 
