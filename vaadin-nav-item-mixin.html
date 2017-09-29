@@ -49,9 +49,6 @@ This program is available under Apache License Version 2.0, available at https:/
       this.addEventListener('keydown', e => this._onKeydown(e));
       this.addEventListener('keyup', e => this._onKeyup());
       this.addEventListener('click', e => this._toggle());
-      if (!this.hasAttribute('tabindex')) {
-        this.tabIndex = 0;
-      }
     }
 
     _toggle() {
@@ -70,13 +67,7 @@ This program is available under Apache License Version 2.0, available at https:/
     _disabledChanged(disabled) {
       this.setAttribute('aria-disabled', disabled);
       if (disabled) {
-        this._oldTabIndex = this.tabIndex < 0 ? 0 : this.tabIndex;
-        this._setFocused(false);
-        this.tabIndex = -1;
         this.blur();
-      } else if (this._oldTabIndex !== undefined) {
-        this.tabIndex = this._oldTabIndex;
-        delete this._oldTabIndex;
       }
     }
 
