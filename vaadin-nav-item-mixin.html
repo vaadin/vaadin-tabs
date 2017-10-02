@@ -50,13 +50,11 @@ This program is available under Apache License Version 2.0, available at https:/
       this.addEventListener('mouseup', e => this._setActive(this._mousedown = false));
       this.addEventListener('keydown', e => this._onKeydown(e));
       this.addEventListener('keyup', e => this._onKeyup(e));
-      this.addEventListener('click', e => this._toggle());
+      this.addEventListener('click', e => this._select());
     }
 
-    _toggle() {
-      this.selected = !this.selected;
-      const evt = new CustomEvent('selected', {bubbles: true, cancelable: true, composed: true, detail: this.selected});
-      this.dispatchEvent(evt);
+    _select() {
+      this.dispatchEvent(new CustomEvent('select', {bubbles: true}));
     }
 
     _selectedChanged(selected) {
@@ -103,7 +101,7 @@ This program is available under Apache License Version 2.0, available at https:/
     _onKeyup(event) {
       if (/^( |SpaceBar|Enter)$/.test(event.key)) {
         this._setActive(false);
-        this._toggle();
+        this._select();
       }
     }
   };

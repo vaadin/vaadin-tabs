@@ -86,21 +86,6 @@
           expect(item.getAttribute('focus-ring')).to.equal('');
         });
 
-        it('should be selectable with mouse click', () => {
-          item.click();
-          expect(item.selected).to.be.true;
-        });
-
-        it('should be selectable with Enter key', () => {
-          enter(item);
-          expect(item.selected).to.be.true;
-        });
-
-        it('should be selectable with Space key', () => {
-          space(item);
-          expect(item.selected).to.be.true;
-        });
-
         it('should have aria-disabled when disabled', () => {
           item.disabled = true;
           expect(item.getAttribute('aria-disabled')).to.equal('true');
