@@ -54,42 +54,29 @@ This program is available under Apache License Version 2.0, available at https:/
     }
 
     _onKeydown(event) {
+      let reverse;
       // left/up
-      if (
-        this.direction === 'horizontal' && event.key === 'ArrowLeft' ||
-        this.direction === 'vertical' && event.key === 'ArrowUp'
-      ) {
-        this._moveFocus(true);
-        event.preventDefault();
-
+      if (this.direction === 'horizontal' && event.key === 'ArrowLeft' ||
+          this.direction === 'vertical' && event.key === 'ArrowUp') {
+        reverse = true;
       // right/down
-      } else if (
-        this.direction === 'horizontal' && event.key === 'ArrowRight' ||
-        this.direction === 'vertical' && event.key === 'ArrowDown'
-      ) {
-        this._moveFocus();
-        event.preventDefault();
-
+      } else if (this.direction === 'horizontal' && event.key === 'ArrowRight' ||
+         this.direction === 'vertical' && event.key === 'ArrowDown') {
+        reverse = false;
       // home
       } else if (event.key === 'Home') {
-        this._focusFirst();
-        event.preventDefault();
-
+        this._focus(this._navItems.length - 1);
+        reverse = false;
       // end
       } else if (event.key === 'End') {
-        this._focusLast();
+        this._focus(0);
+        reverse = true;
+      }
+
+      if (reverse !== undefined) {
+        this._moveFocus(reverse);
         event.preventDefault();
       }
-    }
-
-    _focusFirst() {
-      this._focus(this._navItems.length - 1);
-      this._moveFocus();
-    }
-
-    _focusLast() {
-      this._focus(0);
-      this._moveFocus(true);
     }
 
     _moveFocus(reverse) {
