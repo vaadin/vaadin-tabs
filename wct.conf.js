@@ -1,6 +1,9 @@
 var argv = require('yargs').argv;
 
 module.exports = {
+  plugins: {
+    'random-output': true
+  },
   registerHooks: function(context) {
     var saucelabsPlatforms = [
       'macOS 10.12/iphone@10.3',
