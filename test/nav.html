@@ -182,6 +182,13 @@
           keyDownChar(nav, 'b');
           expect(nav._navItems[1].focused).to.be.true;
         });
+
+        it('should loose focused state on focusout event', () => {
+          nav._navItems[0].dispatchEvent(new CustomEvent('focus', {composed: true, bubbles: true}));
+          expect(nav._navItems[0].hasAttribute('focused')).to.be.true;
+          nav._navItems[0].dispatchEvent(new CustomEvent('focusout', {composed: true, bubbles: true}));
+          expect(nav._navItems[0].hasAttribute('focused')).to.be.false;
+        });
       });
     });
   </script>
