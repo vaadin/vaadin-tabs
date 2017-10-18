@@ -140,11 +140,18 @@ This program is available under Apache License Version 2.0, available at https:/
        *
        * The following shadow DOM parts are available for styling:
        *
-       * Part name         | Description                          | Theme for Element
-       * ------------------|--------------------------------------|--------------------
-       * `back-button`     | Button for moving the scroll back    | vaadin-tabs
-       * `tabs`            | The tabs container                   | vaadin-tabs
-       * `forward-button`  | Button for moving the scroll forward | vaadin-tabs
+       * Part name         | Description
+       * ------------------|--------------------------------------
+       * `back-button`     | Button for moving the scroll back
+       * `tabs`            | The tabs container
+       * `forward-button`  | Button for moving the scroll forward
+       *
+       * The following state attributes are available for styling:
+       *
+       * Attribute  | Description | Part name
+       * -----------|-------------|------------
+       * `vertical` | Set to a disabled text field | :host
+       * `overflow` | It's set to `start`, `end`, none or both. | :host
        *
        * @memberof Vaadin
        * @mixes Vaadin.ListMixin
