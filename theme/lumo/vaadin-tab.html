@@ -116,6 +116,18 @@
         margin-right: 0;
       }
 
+      :host ::slotted(a) {
+        display: flex;
+        align-items: center;
+        width: calc(100% + 2em);
+        height: 100%;
+        margin: -.25em -1em;
+        padding: .25em 1em;
+        text-decoration: none;
+        color: inherit;
+        outline: none;
+      }
+
       :host([theme~="icon-on-top"]) {
         display: flex;
         flex-direction: column;
