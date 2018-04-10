@@ -169,7 +169,8 @@
       /* Equal-width tabs */
 
       :host([theme~="equal-width-tabs"]) [part="tabs"] ::slotted(vaadin-tab) {
-        flex: auto;
+        flex: 1;
+        flex-shrink: 0;
       }
     </style>
   </template>
