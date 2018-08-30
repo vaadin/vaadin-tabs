@@ -131,6 +131,11 @@ We are using [ESLint](http://eslint.org/) for linting JavaScript code. You can c
 Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs](https://saucelabs.com).
 
 
+## Big Thanks
+
+Cross-browser Testing Platform and Open Source <3 Provided by [Sauce Labs](https://saucelabs.com).
+
+
 ## Contributing
 
   To contribute to the component, please read [the guideline](https://github.com/vaadin/vaadin-core/blob/master/CONTRIBUTING.md) first.
