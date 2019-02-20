@@ -130,7 +130,8 @@
         margin-right: 0;
       }
 
-      :host([theme~="icon-on-top"]) {
+      :host([theme~="icon-on-top"]),
+      :host([theme~="icon-on-top"]) ::slotted(a) {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -138,6 +139,10 @@
         text-align: center;
         padding-bottom: 0.5rem;
         padding-top: 0.25rem;
+      }
+
+      :host([theme~="icon-on-top"]) ::slotted(a) {
+        padding: 0;
       }
 
       :host([theme~="icon-on-top"]) ::slotted(iron-icon) {
