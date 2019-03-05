@@ -227,6 +227,15 @@
         MockInteractions.keyUpOn(tabs[0], 13, [], 'Enter');
         expect(spy).to.be.calledOnce;
       });
+
+      it('should not propagate the click to the anchor when other key pressed', () => {
+        const anchor = tabs[0].querySelector('a');
+        const spy = sinon.spy();
+        anchor.addEventListener('click', spy);
+        MockInteractions.keyDownOn(tabs[0], 39, [], 'ArrowRight');
+        MockInteractions.keyUpOn(tabs[0], 39, [], 'ArrowRight');
+        expect(spy).to.not.be.called;
+      });
     });
   </script>
 </body>
