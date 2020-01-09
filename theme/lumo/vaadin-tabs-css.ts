@@ -17,7 +17,7 @@ export const tabsStyles = css`
     min-height: var(--lumo-size-l);
   }
 
-  :host([orientation='horizontal']) [part='tabs'] ::slotted(vaadin-tab:not([theme~='icon-on-top'])) {
+  :host(:not([orientation='vertical'])) [part='tabs'] ::slotted(vaadin-tab:not([theme~='icon-on-top'])) {
     justify-content: center;
   }
 
@@ -25,7 +25,7 @@ export const tabsStyles = css`
     box-shadow: -1px 0 0 0 var(--lumo-contrast-10pct);
   }
 
-  :host([orientation='horizontal']) [part='tabs'] {
+  :host(:not([orientation='vertical'])) [part='tabs'] {
     margin: 0 0.75rem;
   }
 
@@ -126,7 +126,7 @@ export const tabsStyles = css`
   }
 
   /* Centered */
-  :host([theme~='centered'][orientation='horizontal']) [part='tabs'] {
+  :host([theme~='centered']:not([orientation='vertical'])) [part='tabs'] {
     justify-content: center;
   }
 

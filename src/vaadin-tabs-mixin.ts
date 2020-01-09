@@ -38,9 +38,6 @@ export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
       super();
 
       this.selected = 0;
-
-      // TODO: change CSS and remove
-      this.orientation = 'horizontal';
     }
 
     static get styles() {
