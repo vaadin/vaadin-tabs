@@ -11,6 +11,9 @@ import './vaadin-tab';
  * @csspart back-button - Button for moving the scroll back
  * @csspart forward-button - Button for moving the scroll forward
  * @csspart tabs - The tabs container
+ *
+ * @event selected-changed - Fired when the `selected` property changes.
+ * @event resize - Fired when the element is resized. Non-bubbling.
  */
 @customElement('vaadin-tabs')
 export class VaadinTabs extends TabsMixin(TabsBase) {
