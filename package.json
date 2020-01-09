@@ -65,6 +65,7 @@
     "@vaadin/focus-visible-mixin": "^0.1.1",
     "@vaadin/keyboard-direction-mixin": "^0.1.2",
     "@vaadin/orientation-mixin": "^0.1.0",
+    "@vaadin/resizable-mixin": "^0.1.0",
     "@vaadin/roving-tabindex-mixin": "^0.1.3",
     "@vaadin/selected-state-mixin": "^0.1.0",
     "@vaadin/selection-in-view-mixin": "^0.1.3",
@@ -76,7 +77,6 @@
     "@vaadin/vaadin-themable-mixin": "^1.5.2",
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
-    "resize-observer-polyfill": "1.5.1",
     "tslib": "^1.10.0"
   },
   "devDependencies": {

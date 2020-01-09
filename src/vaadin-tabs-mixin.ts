@@ -12,8 +12,8 @@ import {
   SingleSelectionInterface
 } from '@vaadin/single-selection-mixin/single-selection-mixin.js';
 import { SlottedItemsMixin, SlottedItemsInterface } from '@vaadin/slotted-items-mixin/slotted-items-mixin.js';
-import { ResizableMixin } from './resizable-mixin';
-import { ResizableClass } from './resizable-class';
+import { ResizableMixin } from '@vaadin/resizable-mixin/resizable-mixin.js';
+import { ResizableClass } from '@vaadin/resizable-mixin/resizable-class.js';
 import { tabsStyles } from './vaadin-tabs-css';
 
 type TabsBase = new () => LitElement;
