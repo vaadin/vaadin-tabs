@@ -5,6 +5,12 @@ import './vaadin-tab';
 
 /**
  * `<vaadin-tabs>` is a Web Component for easy switching between different views.
+ *
+ * @attr {start | none | both} overflow - Attribute set depending on whether the items fit into viewport.
+ *
+ * @csspart back-button - Button for moving the scroll back
+ * @csspart forward-button - Button for moving the scroll forward
+ * @csspart tabs - The tabs container
  */
 @customElement('vaadin-tabs')
 export class VaadinTabs extends TabsMixin(TabsBase) {
