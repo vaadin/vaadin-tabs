@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [ "esnext", "es2017", "dom" ],
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "importHelpers": true
+  },
+  "include": [
+    "vaadin-tabs.ts",
+    "vaadin-tab.ts",
+    "src",
+    "test",
+    "theme",
+    "node_modules/@vaadin/themable-element/custom_typings/*.d.ts"
+  ]
+}
