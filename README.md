@@ -1,3 +1,11 @@
+# &lt;vaadin-tabs&gt;
+
+[&lt;vaadin-tabs&gt;](https://vaadin.com/components/vaadin-tabs) is a Web Component providing item navigation part of the [Vaadin components](https://vaadin.com/components). It is designed for menu and tab components.
+
+[Live Demo ↗](https://vaadin.com/components/vaadin-tabs/html-examples)
+|
+[API documentation ↗](https://vaadin.com/components/vaadin-tabs/html-api)
+
 [![npm version](https://badgen.net/npm/v/@vaadin/vaadin-tabs)](https://www.npmjs.com/package/@vaadin/vaadin-tabs)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/vaadin/vaadin-tabs)
 [![Build Status](https://travis-ci.org/vaadin/vaadin-tabs.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-tabs)
@@ -5,14 +13,11 @@
 [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-tabs)
 [![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/stars/vaadinvaadin-tabs.svg)](https://vaadin.com/directory/component/vaadinvaadin-tabs)
 
-# &lt;vaadin-tabs&gt;
-
-[Live Demo ↗](https://vaadin.com/components/vaadin-tabs/html-examples)
-|
-[API documentation ↗](https://vaadin.com/components/vaadin-tabs/html-api)
-
-
-[&lt;vaadin-tabs&gt;](https://vaadin.com/components/vaadin-tabs) is a Web Component providing item navigation part of the [Vaadin components](https://vaadin.com/components). It is designed for menu and tab components.
+> ⚠️ This is a pre-release version built with [`LitElement`](https://github.com/Polymer/lit-element), part of the [next generation of Vaadin web components](https://vaadin.com/blog/next-generation-vaadin-components).
+>
+> Looking for Vaadin 14 compatible version? Please see the following branches:
+> - [3.0 branch](https://github.com/vaadin/vaadin-tabs/tree/3.0)
+> - [3.1 branch](https://github.com/vaadin/vaadin-tabs/tree/3.1)
 
 ```html
 <vaadin-tabs selected="3">
