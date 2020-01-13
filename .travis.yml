@@ -13,6 +13,7 @@ script:
     npm run test:sauce;
   else
     npm run check:version &&
+    npm run lint &&
     npm test;
   fi
 
