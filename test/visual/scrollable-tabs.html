@@ -1,15 +1,8 @@
 <!DOCTYPE html>
-
+<html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Scrollable nav visual tests</title>
-  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-
-  <script>
-    const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
-    document.write(`<link rel="import" href="../../theme/${theme}/vaadin-tab.html">`);
-    document.write(`<link rel="import" href="../../theme/${theme}/vaadin-tabs.html">`);
-  </script>
+  <title>Scrollable tabs visual tests</title>
 </head>
 
 <body>
@@ -64,4 +57,19 @@
     </vaadin-tabs>
   </div>
 
+  <script type="module">
+    (async() => {
+      const tabs = Array.from(document.querySelectorAll('vaadin-tabs'));
+      const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
+
+      await import('../../theme/' + theme + '/vaadin-tabs.js');
+
+      await Promise.all(tabs.map(el => el.updateComplete));
+
+      window.requestAnimationFrame(() => {
+        window.webComponentsAreReady = true;
+      });
+    })();
+  </script>
 </body>
+</html>
