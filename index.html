@@ -2,13 +2,43 @@
 
 <html>
   <head>
-    <title>vaadin-tabs</title>
+    <title>&lt;vaadin-tabs&gt;</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../iron-component-page/iron-component-page.html">
+    <style>
+      body {
+        margin: 0;
+      }
+
+      api-viewer {
+        margin: 1rem auto 0;
+      }
+
+      @media(max-width: 799px) {
+        api-viewer {
+          margin: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <iron-component-page src="vaadin-tabs.html"></iron-component-page>
+    <api-viewer src="custom-elements.json">
+      <template data-element="vaadin-tabs">
+        <vaadin-tab>Tab one</vaadin-tab>
+        <vaadin-tab>Tab two</vaadin-tab>
+        <vaadin-tab>Tab three</vaadin-tab>
+        <vaadin-tab>Tab four</vaadin-tab>
+        <vaadin-tab>Tab five</vaadin-tab>
+        <vaadin-tab>Tab six</vaadin-tab>
+        <vaadin-tab>Tab seven</vaadin-tab>
+        <vaadin-tab>Tab eight</vaadin-tab>
+        <vaadin-tab>Tab nine</vaadin-tab>
+      </template>
+    </api-viewer>
+
+    <script type="module" src="./vaadin-tabs.ts"></script>
+    <script type="module">
+      import 'api-viewer-element';
+    </script>
   </body>
 </html>
