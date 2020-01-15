@@ -71,14 +71,6 @@ export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
 
     protected updated(props: PropertyValues) {
       if (props.has('orientation') || props.has('_items')) {
-        this.items.forEach(item => {
-          if (this.orientation) {
-            item.setAttribute('orientation', this.orientation);
-          } else {
-            item.removeAttribute('orientation');
-          }
-        });
-
         this._updateOverflow();
       }
 
@@ -87,6 +79,7 @@ export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
     }
 
     protected _sizeChanged(contentRect: DOMRect) {
+      // Ensure resize event is fired after "overflow" update
       this._updateOverflow();
 
       super._sizeChanged && super._sizeChanged(contentRect);
