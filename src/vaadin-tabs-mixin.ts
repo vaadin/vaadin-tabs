@@ -71,6 +71,17 @@ export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
 
     protected updated(props: PropertyValues) {
       if (props.has('orientation') || props.has('_items')) {
+        // NOTE: we need "orientation" on individual tabs for styling selected state,
+        // because Safari does not support `::before` and `::after` with `::slotted`
+        // See https://bugs.webkit.org/show_bug.cgi?id=178237
+        this.items.forEach(item => {
+          if (this.orientation) {
+            item.setAttribute('orientation', this.orientation);
+          } else {
+            item.removeAttribute('orientation');
+          }
+        });
+
         this._updateOverflow();
       }
 

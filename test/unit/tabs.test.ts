@@ -60,6 +60,23 @@ describe('tabs', () => {
   });
 
   ['horizontal', 'vertical'].forEach(orientation => {
+    describe(`${orientation} orientation`, () => {
+      beforeEach(async () => {
+        tabs.orientation = orientation;
+        await tabs.updateComplete;
+      });
+
+      it(`should set orientation attribute on tabs when ${orientation} orientation is set`, () => {
+        items.forEach(tab => expect(tab.getAttribute('orientation')).to.equal(orientation));
+      });
+
+      it(`should remove orientation attribute on tabs when orientation is set to null`, async () => {
+        tabs.orientation = null;
+        await tabs.updateComplete;
+        items.forEach(tab => expect(tab.hasAttribute('orientation')).to.equal(false));
+      });
+    });
+
     describe(`${orientation} overflow`, () => {
       beforeEach(async () => {
         tabs.orientation = orientation;
