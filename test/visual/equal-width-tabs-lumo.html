@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Equal width tabs visual tests</title>
+</head>
+
+<body>
+  <style media="screen">
+    .capture-block {
+      display: block;
+      width: 800px;
+    }
+  </style>
+
+  <div class="capture-block" id="equal-width-tabs">
+    <vaadin-tabs theme="equal-width-tabs">
+      <vaadin-tab>Tab one</vaadin-tab>
+      <vaadin-tab>Tab two with a longer title</vaadin-tab>
+      <vaadin-tab>Tab three</vaadin-tab>
+    </vaadin-tabs>
+    <br>
+    <div style="display: flex; justify-content: center; width: 800px;">
+      <vaadin-tabs theme="equal-width-tabs">
+        <vaadin-tab>Tab one</vaadin-tab>
+        <vaadin-tab>Tab two with a longer title</vaadin-tab>
+        <vaadin-tab>Tab three</vaadin-tab>
+      </vaadin-tabs>
+    </div>
+  </div>
+
+  <script type="module">
+    (async() => {
+      const tabs = Array.from(document.querySelectorAll('vaadin-tabs'));
+
+      await import('../../theme/lumo/vaadin-tabs.js');
+
+      await Promise.all(tabs.map(el => el.updateComplete));
+
+      window.requestAnimationFrame(() => {
+        window.webComponentsAreReady = true;
+      });
+    })();
+  </script>
+</body>
+</html>
