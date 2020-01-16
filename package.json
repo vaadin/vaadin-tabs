@@ -60,7 +60,7 @@
     "test:visual": "npm run build && gemini test test/visual"
   },
   "dependencies": {
-    "@vaadin/element-base": "^0.1.3",
+    "@vaadin/element-base": "^0.2.0",
     "@vaadin/active-state-mixin": "^0.1.1",
     "@vaadin/disabled-state-mixin": "^0.1.0",
     "@vaadin/focus-visible-mixin": "^0.1.1",
@@ -73,8 +73,8 @@
     "@vaadin/single-selection-mixin": "^0.1.3",
     "@vaadin/slotted-items-mixin": "^0.1.2",
     "@vaadin/themable-element": "^0.1.2",
-    "@vaadin/vaadin-lumo-styles": "^1.5.0",
-    "@vaadin/vaadin-material-styles": "^1.2.3",
+    "@vaadin/vaadin-lumo-styles": "^1.6.0",
+    "@vaadin/vaadin-material-styles": "^1.3.2",
     "@vaadin/vaadin-themable-mixin": "^1.5.2",
     "lit-element": "^2.0.0",
     "lit-html": "^1.0.0",
