@@ -2,35 +2,30 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Horizontal tabs visual tests</title>
+  <title>Equal width tabs visual tests</title>
 </head>
 
 <body>
   <style media="screen">
     .capture-block {
-      display: inline-block;
+      display: flex;
       width: 800px;
-    }
-
-    vaadin-tab {
-      text-align: center;
     }
   </style>
 
-  <div class="capture-block" id="horizontal-tabs">
-    <vaadin-tabs>
-      <vaadin-tab>Foo</vaadin-tab>
-      <vaadin-tab>Bar</vaadin-tab>
-      <vaadin-tab>Baz</vaadin-tab>
+  <div class="capture-block" id="equal-width-tabs">
+    <vaadin-tabs theme="equal-width-tabs">
+      <vaadin-tab>Tab one</vaadin-tab>
+      <vaadin-tab>Tab two with a longer title</vaadin-tab>
+      <vaadin-tab>Tab three</vaadin-tab>
     </vaadin-tabs>
   </div>
 
   <script type="module">
     (async() => {
       const tabs = Array.from(document.querySelectorAll('vaadin-tabs'));
-      const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
 
-      await import('../../theme/' + theme + '/vaadin-tabs.js');
+      await import('../../theme/lumo/vaadin-tabs.js');
 
       await Promise.all(tabs.map(el => el.updateComplete));
 
