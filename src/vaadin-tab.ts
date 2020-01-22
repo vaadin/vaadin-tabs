@@ -10,7 +10,7 @@ export class VaadinTab extends TabMixin(TabBase) {
   static is = 'vaadin-tab';
 
   static get version() {
-    return '3.0.5';
+    return '4.0.0-alpha1';
   }
 }
 
