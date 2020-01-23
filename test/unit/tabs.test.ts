@@ -29,6 +29,7 @@ describe('tabs', () => {
         <vaadin-tab>Tab two</vaadin-tab>
         <vaadin-tab>Tab three</vaadin-tab>
         <vaadin-tab>Tab four</vaadin-tab>
+        <span>&nbsp;</span>
         <vaadin-tab>
           <a>Tab five</a>
         </vaadin-tab>
@@ -56,6 +57,15 @@ describe('tabs', () => {
 
     it('should have a valid version number', () => {
       expect(customElements.get(tagName).version).to.match(/^(\d+\.)?(\d+\.)?(\d+)(-(alpha|beta)\d+)?$/);
+    });
+  });
+
+  describe('items', () => {
+    it('should only add vaadin-tab components to items', () => {
+      expect(tabs.items.length).to.equal(5);
+      tabs.items.forEach(item => {
+        expect(item.tagName.toLowerCase()).to.equal('vaadin-tab');
+      });
     });
   });
 
