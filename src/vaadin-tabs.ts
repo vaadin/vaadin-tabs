@@ -24,7 +24,7 @@ export class VaadinTabs extends TabsMixin(TabsBase) {
   }
 
   protected _filterItems() {
-    return Array.from(this.querySelectorAll(VaadinTab.is)) as VaadinTab[];
+    return Array.from(this.querySelectorAll(VaadinTab.is));
   }
 }
 
