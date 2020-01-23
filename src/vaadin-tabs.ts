@@ -1,7 +1,7 @@
 import { customElement } from 'lit-element';
 import { TabsBase } from './vaadin-tabs-base';
 import { TabsMixin } from './vaadin-tabs-mixin';
-import './vaadin-tab';
+import { VaadinTab } from './vaadin-tab';
 
 /**
  * `<vaadin-tabs>` is a Web Component for easy switching between different views.
@@ -21,6 +21,10 @@ export class VaadinTabs extends TabsMixin(TabsBase) {
 
   static get version() {
     return '4.0.0-alpha1';
+  }
+
+  protected _filterItems() {
+    return Array.from(this.querySelectorAll(VaadinTab.is)) as VaadinTab[];
   }
 }
 
