@@ -72,6 +72,21 @@
       :host([theme~="fixed"]) [part="tabs"] ::slotted(vaadin-tab) {
         flex-basis: 0.0001px;
       }
+
+      /* RTL specific styles */
+
+      :host([dir="rtl"]) [part="forward-button"] {
+        left: auto;
+        right: 0;
+      }
+
+      :host([dir="rtl"]) [part="forward-button"]::after {
+        content: var(--material-icons-chevron-left);
+      }
+
+      :host([dir="rtl"]) [part="back-button"]::after {
+        content: var(--material-icons-chevron-right);
+      }
     </style>
   </template>
 </dom-module>
