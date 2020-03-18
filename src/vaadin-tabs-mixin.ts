@@ -1,4 +1,6 @@
 import { LitElement, html, PropertyValues } from 'lit-element';
+import { DirectionMixin } from '@vaadin/direction-mixin/direction-mixin.js';
+import { DirectionClass } from '@vaadin/direction-mixin/direction-class.js';
 import {
   KeyboardDirectionMixin,
   KeyboardDirectionInterface
@@ -19,6 +21,7 @@ import { tabsStyles } from './vaadin-tabs-css';
 type TabsBase = new () => LitElement;
 
 type Tab = new () => LitElement &
+  DirectionClass &
   SlottedItemsInterface &
   KeyboardDirectionInterface &
   OrientationInterface &
@@ -29,7 +32,9 @@ type Tab = new () => LitElement &
 export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
   class Tabs extends ResizableMixin(
     SelectionInViewMixin(
-      SingleSelectionMixin(OrientationMixin(RovingTabIndexMixin(KeyboardDirectionMixin(SlottedItemsMixin(base)))))
+      SingleSelectionMixin(
+        OrientationMixin(RovingTabIndexMixin(KeyboardDirectionMixin(DirectionMixin(SlottedItemsMixin(base)))))
+      )
     )
   ) {
     private _scroller?: HTMLElement;
@@ -70,7 +75,7 @@ export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
     }
 
     protected updated(props: PropertyValues) {
-      if (props.has('orientation') || props.has('_items')) {
+      if (props.has('orientation') || props.has('items')) {
         // NOTE: we need "orientation" on individual tabs for styling selected state,
         // because Safari does not support `::before` and `::after` with `::slotted`
         // See https://bugs.webkit.org/show_bug.cgi?id=178237
