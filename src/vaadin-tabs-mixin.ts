@@ -1,4 +1,5 @@
 import { LitElement, html, PropertyValues } from 'lit-element';
+import { Constructor } from '@vaadin/mixin-utils';
 import { DirectionMixin } from '@vaadin/direction-mixin/direction-mixin.js';
 import { DirectionClass } from '@vaadin/direction-mixin/direction-class.js';
 import {
@@ -18,10 +19,7 @@ import { ResizableMixin } from '@vaadin/resizable-mixin/resizable-mixin.js';
 import { ResizableClass } from '@vaadin/resizable-mixin/resizable-class.js';
 import { tabsStyles } from './vaadin-tabs-css';
 
-type TabsBase = new () => LitElement;
-
-type Tab = new () => LitElement &
-  DirectionClass &
+export type Tabs = DirectionClass &
   SlottedItemsInterface &
   KeyboardDirectionInterface &
   OrientationInterface &
@@ -29,7 +27,7 @@ type Tab = new () => LitElement &
   SingleSelectionInterface &
   SelectionInViewClass;
 
-export const TabsMixin = <T extends TabsBase>(base: T): Tab => {
+export const TabsMixin = <T extends Constructor<LitElement>>(base: T): T & Constructor<Tabs> => {
   class Tabs extends ResizableMixin(
     SelectionInViewMixin(
       SingleSelectionMixin(

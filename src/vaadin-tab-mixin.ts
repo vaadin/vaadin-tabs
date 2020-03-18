@@ -1,19 +1,14 @@
 import { LitElement, PropertyValues } from 'lit-element';
+import { Constructor } from '@vaadin/mixin-utils';
 import { ActiveStateMixin } from '@vaadin/active-state-mixin/active-state-mixin.js';
 import { ActiveStateClass } from '@vaadin/active-state-mixin/active-state-class.js';
 import { DisabledStateMixin, DisabledStateInterface } from '@vaadin/disabled-state-mixin/disabled-state-mixin.js';
 import { FocusVisibleMixin, FocusVisibleInterface } from '@vaadin/focus-visible-mixin/focus-visible-mixin.js';
 import { SelectedStateMixin, SelectedStateInterface } from '@vaadin/selected-state-mixin/selected-state-mixin.js';
 
-type TabBase = new () => LitElement;
+export type Tab = DisabledStateInterface & FocusVisibleInterface & ActiveStateClass & SelectedStateInterface;
 
-type Tab = new () => LitElement &
-  DisabledStateInterface &
-  FocusVisibleInterface &
-  ActiveStateClass &
-  SelectedStateInterface;
-
-export const TabMixin = <T extends TabBase>(base: T): Tab => {
+export const TabMixin = <T extends Constructor<LitElement>>(base: T): T & Constructor<Tab> => {
   class Tab extends SelectedStateMixin(FocusVisibleMixin(ActiveStateMixin(DisabledStateMixin(base)))) {
     protected firstUpdated(props: PropertyValues) {
       super.firstUpdated(props);

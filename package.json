@@ -65,6 +65,7 @@
     "@vaadin/disabled-state-mixin": "^0.1.1",
     "@vaadin/focus-visible-mixin": "^0.1.3",
     "@vaadin/keyboard-direction-mixin": "^0.1.5",
+    "@vaadin/mixin-utils": "^0.1.0",
     "@vaadin/orientation-mixin": "^0.1.2",
     "@vaadin/resizable-mixin": "^0.1.1",
     "@vaadin/roving-tabindex-mixin": "^0.1.6",
