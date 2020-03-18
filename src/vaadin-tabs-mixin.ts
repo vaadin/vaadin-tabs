@@ -17,7 +17,6 @@ import {
 import { SlottedItemsMixin, SlottedItemsInterface } from '@vaadin/slotted-items-mixin/slotted-items-mixin.js';
 import { ResizableMixin } from '@vaadin/resizable-mixin/resizable-mixin.js';
 import { ResizableClass } from '@vaadin/resizable-mixin/resizable-class.js';
-import { tabsStyles } from './vaadin-tabs-css';
 
 export type Tabs = DirectionClass &
   SlottedItemsInterface &
@@ -41,10 +40,6 @@ export const TabsMixin = <T extends Constructor<LitElement>>(base: T): T & Const
       super();
 
       this.selected = 0;
-    }
-
-    static get styles() {
-      return tabsStyles;
     }
 
     protected render() {
