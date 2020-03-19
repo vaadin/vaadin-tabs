@@ -20,7 +20,7 @@ export class VaadinTabs extends TabsMixin(TabsBase) {
   static is = 'vaadin-tabs';
 
   static get version() {
-    return '4.0.0-alpha2';
+    return '4.0.0-alpha3';
   }
 
   protected _filterItems() {
