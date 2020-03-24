@@ -212,7 +212,7 @@ This program is available under Apache License Version 2.0, available at https:/
         }
 
         _updateOverflow() {
-          const scrollPosition = this._vertical ? this._scrollerElement.scrollTop : this._scrollerElement.scrollLeft;
+          const scrollPosition = this._vertical ? this._scrollerElement.scrollTop : this.__getNormalizedScrollLeft(this._scrollerElement);
           let scrollSize = this._vertical ? this._scrollerElement.scrollHeight : this._scrollerElement.scrollWidth;
           // In Edge we need to adjust the size in 1 pixel
           scrollSize -= 1;

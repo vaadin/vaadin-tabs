@@ -162,10 +162,10 @@
                 });
 
                 // Simulate over-scrolling
-                nav._scroll(-1);
+                nav._scroll(horizontalRtl ? 400 : -400);
                 scroll.dispatchEvent(new CustomEvent('scroll'));
 
-                expect(nav.getAttribute('overflow')).to.be.equal(horizontalRtl ? 'start' : 'end');
+                expect(nav.getAttribute('overflow')).to.be.equal('end');
               });
             });
 
