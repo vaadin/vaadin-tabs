@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Vertical tabs visual tests</title>
+  <script>
+    window.polymerSkipLoadingFontRoboto = true;
+  </script>
 </head>
 
 <body>
-  <style media="screen">
-    .capture-block {
-      display: inline-block;
+  <style>
+    #tabs-tests {
       width: 800px;
     }
   </style>
 
-  <div class="capture-block" id="vertical-tabs">
+  <div id="tabs-tests">
     <vaadin-tabs orientation="vertical" style="width: 150px;">
       <vaadin-tab>Foo</vaadin-tab>
       <vaadin-tab>Bar</vaadin-tab>
@@ -34,7 +36,7 @@
       await Promise.all(tabs.map(el => el.updateComplete));
 
       window.requestAnimationFrame(() => {
-        window.webComponentsAreReady = true;
+        document.getElementById('tabs-tests').dataset.ready = true;
       });
     })();
   </script>

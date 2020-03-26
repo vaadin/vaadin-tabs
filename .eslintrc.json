@@ -4,5 +4,16 @@
     "sourceType": "module",
     "ecmaVersion": 2018,
     "project": "./tsconfig.json"
-  }
+  },
+  "overrides": [
+    {
+      "files": [ "**/test/visual/test.js" ],
+      "env": {
+        "mocha": true
+      },
+      "rules": {
+        "func-names": "off"
+      }
+    }
+  ]
 }

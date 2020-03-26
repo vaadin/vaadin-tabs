@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Anchor tabs visual tests</title>
 
@@ -9,6 +9,7 @@
   </script>
 
   <script>
+    window.polymerSkipLoadingFontRoboto = true;
     const theme = window.location.search.replace(/.*theme=(\w+).*/, '$1') || 'lumo';
     document.write(`
       <custom-style>
@@ -20,13 +21,13 @@
 </head>
 
 <body>
-  <style media="screen">
-    .capture-block {
+  <style>
+    #tabs-tests {
       width: 800px;
     }
   </style>
 
-  <div class="capture-block" id="anchor-tabs">
+  <div id="tabs-tests">
     <vaadin-tabs>
       <vaadin-tab><a href="#">Foo</a></vaadin-tab>
       <vaadin-tab><a href="#">Bar</a></vaadin-tab>
@@ -50,7 +51,7 @@
       await Promise.all(tabs.map(el => el.updateComplete));
 
       window.requestAnimationFrame(() => {
-        window.webComponentsAreReady = true;
+        document.getElementById('tabs-tests').dataset.ready = true;
       });
     })();
   </script>

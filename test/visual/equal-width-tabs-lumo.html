@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Equal width tabs visual tests</title>
 </head>
 
 <body>
-  <style media="screen">
-    .capture-block {
-      display: flex;
+  <style>
+    #tabs-tests {
       width: 800px;
     }
   </style>
 
-  <div class="capture-block" id="equal-width-tabs">
+  <div id="tabs-tests">
     <vaadin-tabs theme="equal-width-tabs">
       <vaadin-tab>Tab one</vaadin-tab>
       <vaadin-tab>Tab two with a longer title</vaadin-tab>
@@ -30,7 +29,7 @@
       await Promise.all(tabs.map(el => el.updateComplete));
 
       window.requestAnimationFrame(() => {
-        window.webComponentsAreReady = true;
+        document.getElementById('tabs-tests').dataset.ready = true;
       });
     })();
   </script>
