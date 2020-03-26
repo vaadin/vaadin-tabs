@@ -56,7 +56,7 @@
         color: inherit;
       }
 
-      [part="forward-button"] {
+      :host(:not([dir="rtl"])) [part="forward-button"] {
         right: 0;
       }
 
@@ -199,7 +199,6 @@
       }
 
       :host([dir="rtl"]) [part="forward-button"] {
-        right: auto;
         left: 0;
       }
 
