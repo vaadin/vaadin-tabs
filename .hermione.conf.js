@@ -2,7 +2,7 @@ module.exports = {
   browsers: {
     chrome: {
       baseUrl: 'http://localhost:8080/test/visual/',
-      screenshotsDir: 'test/visual/screens',
+      screenshotsDir: () => 'test/visual/screens/chrome',
       desiredCapabilities: {
         browserName: 'chrome',
         version: '80.0',
