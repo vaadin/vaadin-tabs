@@ -173,7 +173,7 @@ class TabsElement extends
   }
 
   static get observers() {
-    return ['_updateOverflow(items.*, vertical)'];
+    return ['_updateOverflow(items.*)'];
   }
 
   ready() {
