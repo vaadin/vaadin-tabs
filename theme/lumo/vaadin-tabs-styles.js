@@ -74,18 +74,9 @@ registerStyles(
     [part='tabs'] {
       --_lumo-tabs-overflow-mask-image: none;
       -webkit-mask-image: var(--_lumo-tabs-overflow-mask-image);
+      mask-image: var(--_lumo-tabs-overflow-mask-image);
       /* For IE11 */
       min-height: var(--lumo-size-l);
-    }
-
-    /*
-        TODO: CSS custom property in \`mask-image\` causes crash in Edge
-        see https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/15415089/
-      */
-    @-moz-document url-prefix() {
-      [part='tabs'] {
-        mask-image: var(--_lumo-tabs-overflow-mask-image);
-      }
     }
 
     /* Horizontal tabs overflow */
@@ -163,8 +154,8 @@ registerStyles(
       display: none;
     }
 
-    :host([theme~='hide-scroll-buttons'][overflow~='start'][overflow~='end']:not([orientation='vertical']))
-      [part='tabs'] {
+    /* prettier-ignore */
+    :host([theme~='hide-scroll-buttons'][overflow~='start'][overflow~='end']:not([orientation='vertical'])) [part='tabs'] {
       --_lumo-tabs-overflow-mask-image: linear-gradient(
         90deg,
         transparent,
