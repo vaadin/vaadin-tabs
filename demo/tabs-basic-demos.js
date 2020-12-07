@@ -1,5 +1,8 @@
-<dom-module id="tabs-basic-demos">
-  <template>
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+class TabsBasicDemos extends DemoReadyEventEmitter(TabsDemo(PolymerElement)) {
+  static get template() {
+    return html`
     <style include="vaadin-component-demo-shared-styles">
       :host {
         display: block;
@@ -7,8 +10,8 @@
     </style>
 
     <h3>Horizontal tabs</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-horizontal-tabs'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-horizontal-tabs">
+      <template preserve-content="">
         <vaadin-tabs>
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -18,8 +21,8 @@
     </vaadin-demo-snippet>
 
     <h3>Vertical tabs</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-vertical-tabs'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-vertical-tabs">
+      <template preserve-content="">
         <vaadin-tabs orientation="vertical">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -29,8 +32,8 @@
     </vaadin-demo-snippet>
 
     <h3>Scrollable horizontal tabs</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-scrollable-horizontal-tabs'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-scrollable-horizontal-tabs">
+      <template preserve-content="">
         <vaadin-tabs>
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -52,8 +55,8 @@
     </vaadin-demo-snippet>
 
     <h3>Scrollable vertical tabs</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-scrollable-vertical-tabs'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-scrollable-vertical-tabs">
+      <template preserve-content="">
         <vaadin-tabs orientation="vertical" style="height: 130px;">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -75,12 +78,12 @@
     </vaadin-demo-snippet>
 
     <h3>Disabled tab</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-disabled-tab'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-disabled-tab">
+      <template preserve-content="">
         <vaadin-tabs>
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
-          <vaadin-tab disabled>Disabled tab</vaadin-tab>
+          <vaadin-tab disabled="">Disabled tab</vaadin-tab>
           <vaadin-tab>Tab four</vaadin-tab>
           <vaadin-tab>Tab five</vaadin-tab>
         </vaadin-tabs>
@@ -88,8 +91,8 @@
     </vaadin-demo-snippet>
 
     <h3>Pre-selected tab</h3>
-    <vaadin-demo-snippet id='tabs-basic-demos-preselected-tab'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-preselected-tab">
+      <template preserve-content="">
         <vaadin-tabs selected="1">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -103,8 +106,8 @@
       <b>Note:</b> wrapping tab content into <code>&lt;a&gt;</code> introduces a limitation of styling slotted
       elements, like icons, by the <code>&lt;vaadin-tabs&gt;</code> theme.
     </p>
-    <vaadin-demo-snippet id='tabs-basic-demos-links'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-basic-demos-links">
+      <template preserve-content="">
         <vaadin-tabs>
           <vaadin-tab>
             <a href="https://vaadin.com/components/vaadin-tabs/install" tabindex="-1" target="_blank" rel="noopener">
@@ -127,14 +130,11 @@
         </style>
       </template>
     </vaadin-demo-snippet>
+`;
+  }
 
-  </template>
-  <script>
-    class TabsBasicDemos extends DemoReadyEventEmitter(TabsDemo(Polymer.Element)) {
-      static get is() {
-        return 'tabs-basic-demos';
-      }
-    }
-    customElements.define(TabsBasicDemos.is, TabsBasicDemos);
-  </script>
-</dom-module>
+  static get is() {
+    return 'tabs-basic-demos';
+  }
+}
+customElements.define(TabsBasicDemos.is, TabsBasicDemos);

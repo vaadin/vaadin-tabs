@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>vaadin-tabs tests</title>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../../iron-test-helpers/mock-interactions.js"></script>
-  <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../vaadin-tab.html">
-  <link rel="import" href="../vaadin-tabs.html">
+  <script src="../../../wct-browser-legacy/browser.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../../@polymer/iron-test-helpers/mock-interactions.js" type="module"></script>
+  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
+  <script type="module" src="../vaadin-tab.js"></script>
+  <script type="module" src="../vaadin-tabs.js"></script>
 </head>
 
 <body>
@@ -56,195 +56,199 @@
     </template>
   </test-fixture>
 
-  <script>
-    const safari10 = /Apple.* Version\/(9|10)/.test(navigator.userAgent);
+  <script type="module">
+import '@polymer/test-fixture/test-fixture.js';
+import '../vaadin-tab.js';
+import '../vaadin-tabs.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+const safari10 = /Apple.* Version\/(9|10)/.test(navigator.userAgent);
 
-    describe('vaadin-tabs', () => {
-      var nav;
+describe('vaadin-tabs', () => {
+  var nav;
 
-      beforeEach(done => {
-        nav = fixture('nav');
-        Polymer.RenderStatus.afterNextRender(nav, () => {
-          nav._observer.flush();
-          done();
+  beforeEach(done => {
+    nav = fixture('nav');
+    afterNextRender(nav, () => {
+      nav._observer.flush();
+      done();
+    });
+  });
+
+  it('should have a correct localName', () => {
+    expect(nav.localName).to.equal('vaadin-tabs');
+  });
+
+  it('should have role="tablist"', () => {
+    expect(nav.getAttribute('role')).to.equal('tablist');
+  });
+
+  it('`_navItems` should only contain vaadin-tabs', () => {
+    expect(nav.items.length).to.equal(4);
+    nav.items.forEach(item => {
+      expect(item.tagName.toLowerCase()).to.equal('vaadin-tab');
+    });
+  });
+
+  it('should not have attribute overflow when items fit in the viewport', () => {
+    expect(nav.hasAttribute('overflow')).to.be.false;
+  });
+
+  ['horizontal', 'vertical'].forEach(orientation => {
+
+    ['ltr', 'rtl'].forEach(direction => {
+
+      describe(`Overflow ${orientation} ${direction}`, () => {
+        let horizontalRtl;
+
+        beforeEach(() => {
+          horizontalRtl = orientation === 'horizontal' && direction === 'rtl';
+          document.documentElement.setAttribute('dir', direction);
+          nav.orientation = orientation;
         });
-      });
 
-      it('should have a correct localName', () => {
-        expect(nav.localName).to.equal('vaadin-tabs');
-      });
-
-      it('should have role="tablist"', () => {
-        expect(nav.getAttribute('role')).to.equal('tablist');
-      });
-
-      it('`_navItems` should only contain vaadin-tabs', () => {
-        expect(nav.items.length).to.equal(4);
-        nav.items.forEach(item => {
-          expect(item.tagName.toLowerCase()).to.equal('vaadin-tab');
-        });
-      });
-
-      it('should not have attribute overflow when items fit in the viewport', () => {
-        expect(nav.hasAttribute('overflow')).to.be.false;
-      });
-
-      ['horizontal', 'vertical'].forEach(orientation => {
-
-        ['ltr', 'rtl'].forEach(direction => {
-
-          describe(`Overflow ${orientation} ${direction}`, () => {
-            let horizontalRtl;
-
-            beforeEach(() => {
-              horizontalRtl = orientation === 'horizontal' && direction === 'rtl';
-              document.documentElement.setAttribute('dir', direction);
-              nav.orientation = orientation;
-            });
-
-            describe('In large viewport', () => {
-              it(`when orientation=${orientation} should not have overflow`, function(done) {
-                setTimeout(() => {
-                  expect(nav.hasAttribute('overflow')).to.be.false;
-                  done();
-                }, 10);
-              });
-            });
-
-            describe('In small viewport', () => {
-
-              // these tests pass in latest Safari but fails in previous version
-              if (safari10) {
-                return;
-              }
-
-              beforeEach(done => {
-                nav.style.width = '200px';
-                nav.style.height = '100px';
-                nav._updateOverflow();
-                Polymer.RenderStatus.afterNextRender(this, done);
-              });
-
-              it(`when orientation=${orientation} should have overflow="end" if scroll is at the beginning`, done => {
-                setTimeout(() => {
-                  expect(nav.getAttribute('overflow')).to.be.equal('end');
-                  done();
-                }, 100);
-              });
-
-              it(`when orientation=${orientation} should have overflow="start end" if scroll is at the middle`, done => {
-                const listener = nav._scrollerElement.addEventListener('scroll', () => {
-                  expect(nav.getAttribute('overflow')).to.contain('start');
-                  expect(nav.getAttribute('overflow')).to.contain('end');
-                  nav._scrollerElement.removeEventListener('scroll', listener);
-                  done();
-                });
-                nav._scroll(horizontalRtl ? -2 : 2);
-              });
-
-              it(`when orientation=${orientation} should have overflow="start" if scroll is at the end`, done => {
-                const listener = nav._scrollerElement.addEventListener('scroll', () => {
-                  expect(nav.getAttribute('overflow')).to.be.equal('start');
-                  nav._scrollerElement.removeEventListener('scroll', listener);
-                  done();
-                });
-                nav._scroll(horizontalRtl ? -400 : 400);
-              });
-
-              it(`when orientation=${orientation} should not have overflow="start" when over-scrolling`, () => {
-                const scroll = nav._scrollerElement;
-
-                // Cannot set negative values to native scroll, monkey patching the properties
-                let pixels = 0;
-                Object.defineProperty(scroll, orientation == 'horizontal' ? 'scrollLeft' : 'scrollTop', {
-                  get: () => pixels,
-                  set: (v) => pixels = v
-                });
-
-                // Simulate over-scrolling
-                nav._scroll(horizontalRtl ? 400 : -400);
-                scroll.dispatchEvent(new CustomEvent('scroll'));
-
-                expect(nav.getAttribute('overflow')).to.be.equal('end');
-              });
-            });
-
+        describe('In large viewport', () => {
+          it(`when orientation=${orientation} should not have overflow`, function(done) {
+            setTimeout(() => {
+              expect(nav.hasAttribute('overflow')).to.be.false;
+              done();
+            }, 10);
           });
         });
-      });
-    });
 
-    describe('flex-child', () => {
-      let nav;
+        describe('In small viewport', () => {
 
-      beforeEach(done => {
-        const wrapper = fixture('flex-child');
-        nav = wrapper.querySelector('vaadin-tabs');
-        Polymer.RenderStatus.afterNextRender(nav, () => {
-          nav._observer.flush();
-          done();
+          // these tests pass in latest Safari but fails in previous version
+          if (safari10) {
+            return;
+          }
+
+          beforeEach(done => {
+            nav.style.width = '200px';
+            nav.style.height = '100px';
+            nav._updateOverflow();
+            afterNextRender(window, done);
+          });
+
+          it(`when orientation=${orientation} should have overflow="end" if scroll is at the beginning`, done => {
+            setTimeout(() => {
+              expect(nav.getAttribute('overflow')).to.be.equal('end');
+              done();
+            }, 100);
+          });
+
+          it(`when orientation=${orientation} should have overflow="start end" if scroll is at the middle`, done => {
+            const listener = nav._scrollerElement.addEventListener('scroll', () => {
+              expect(nav.getAttribute('overflow')).to.contain('start');
+              expect(nav.getAttribute('overflow')).to.contain('end');
+              nav._scrollerElement.removeEventListener('scroll', listener);
+              done();
+            });
+            nav._scroll(horizontalRtl ? -2 : 2);
+          });
+
+          it(`when orientation=${orientation} should have overflow="start" if scroll is at the end`, done => {
+            const listener = nav._scrollerElement.addEventListener('scroll', () => {
+              expect(nav.getAttribute('overflow')).to.be.equal('start');
+              nav._scrollerElement.removeEventListener('scroll', listener);
+              done();
+            });
+            nav._scroll(horizontalRtl ? -400 : 400);
+          });
+
+          it(`when orientation=${orientation} should not have overflow="start" when over-scrolling`, () => {
+            const scroll = nav._scrollerElement;
+
+            // Cannot set negative values to native scroll, monkey patching the properties
+            let pixels = 0;
+            Object.defineProperty(scroll, orientation == 'horizontal' ? 'scrollLeft' : 'scrollTop', {
+              get: () => pixels,
+              set: (v) => pixels = v
+            });
+
+            // Simulate over-scrolling
+            nav._scroll(horizontalRtl ? 400 : -400);
+            scroll.dispatchEvent(new CustomEvent('scroll'));
+
+            expect(nav.getAttribute('overflow')).to.be.equal('end');
+          });
         });
-      });
 
-      it('should have width above zero', () => {
-        expect(nav.offsetWidth).to.be.above(0);
-      });
-
-      it('should not scroll', () => {
-        // Edge & IE11 apply roundings to the metrics, need to assert by 1px
-        expect(nav.$.scroll.scrollWidth).to.be.closeTo(nav.$.scroll.offsetWidth, 1);
-      });
-
-    });
-
-    describe('flex-equal-width-tabs', () => {
-      let nav, tabs;
-
-      beforeEach(done => {
-        const wrapper = fixture('flex-equal-width-tabs');
-        nav = wrapper.querySelector('vaadin-tabs');
-        tabs = wrapper.querySelectorAll('vaadin-tab');
-        Polymer.RenderStatus.afterNextRender(nav, () => {
-          nav._observer.flush();
-          done();
-        });
-      });
-
-      it('should not cut content', () => {
-        expect(tabs[1].offsetWidth).to.be.above(124);
-        expect(nav.offsetWidth).to.be.eql(400);
       });
     });
+  });
+});
 
-    describe('tabs with slotted anchors', () => {
-      let nav, tabs;
+describe('flex-child', () => {
+  let nav;
 
-      beforeEach(done => {
-        nav = fixture('anchors');
-        tabs = nav.querySelectorAll('vaadin-tab');
-        Polymer.RenderStatus.afterNextRender(nav, () => {
-          nav._observer.flush();
-          done();
-        });
-      });
-
-      it('should propagate the click to the anchor element when Enter pressed', () => {
-        const anchor = tabs[0].querySelector('a');
-        const spy = sinon.spy();
-        anchor.addEventListener('click', spy);
-        MockInteractions.keyDownOn(tabs[0], 13, [], 'Enter');
-        MockInteractions.keyUpOn(tabs[0], 13, [], 'Enter');
-        expect(spy).to.be.calledOnce;
-      });
-
-      it('should not propagate the click to the anchor when other key pressed', () => {
-        const anchor = tabs[0].querySelector('a');
-        const spy = sinon.spy();
-        anchor.addEventListener('click', spy);
-        MockInteractions.keyDownOn(tabs[0], 39, [], 'ArrowRight');
-        MockInteractions.keyUpOn(tabs[0], 39, [], 'ArrowRight');
-        expect(spy).to.not.be.called;
-      });
+  beforeEach(done => {
+    const wrapper = fixture('flex-child');
+    nav = wrapper.querySelector('vaadin-tabs');
+    afterNextRender(nav, () => {
+      nav._observer.flush();
+      done();
     });
-  </script>
+  });
+
+  it('should have width above zero', () => {
+    expect(nav.offsetWidth).to.be.above(0);
+  });
+
+  it('should not scroll', () => {
+    // Edge & IE11 apply roundings to the metrics, need to assert by 1px
+    expect(nav.$.scroll.scrollWidth).to.be.closeTo(nav.$.scroll.offsetWidth, 1);
+  });
+
+});
+
+describe('flex-equal-width-tabs', () => {
+  let nav, tabs;
+
+  beforeEach(done => {
+    const wrapper = fixture('flex-equal-width-tabs');
+    nav = wrapper.querySelector('vaadin-tabs');
+    tabs = wrapper.querySelectorAll('vaadin-tab');
+    afterNextRender(nav, () => {
+      nav._observer.flush();
+      done();
+    });
+  });
+
+  it('should not cut content', () => {
+    expect(tabs[1].offsetWidth).to.be.above(124);
+    expect(nav.offsetWidth).to.be.eql(400);
+  });
+});
+
+describe('tabs with slotted anchors', () => {
+  let nav, tabs;
+
+  beforeEach(done => {
+    nav = fixture('anchors');
+    tabs = nav.querySelectorAll('vaadin-tab');
+    afterNextRender(nav, () => {
+      nav._observer.flush();
+      done();
+    });
+  });
+
+  it('should propagate the click to the anchor element when Enter pressed', () => {
+    const anchor = tabs[0].querySelector('a');
+    const spy = sinon.spy();
+    anchor.addEventListener('click', spy);
+    MockInteractions.keyDownOn(tabs[0], 13, [], 'Enter');
+    MockInteractions.keyUpOn(tabs[0], 13, [], 'Enter');
+    expect(spy).to.be.calledOnce;
+  });
+
+  it('should not propagate the click to the anchor when other key pressed', () => {
+    const anchor = tabs[0].querySelector('a');
+    const spy = sinon.spy();
+    anchor.addEventListener('click', spy);
+    MockInteractions.keyDownOn(tabs[0], 39, [], 'ArrowRight');
+    MockInteractions.keyUpOn(tabs[0], 39, [], 'ArrowRight');
+    expect(spy).to.not.be.called;
+  });
+});
+</script>
 </body>

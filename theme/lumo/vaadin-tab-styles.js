@@ -1,9 +1,10 @@
-<link rel="import" href="../../../vaadin-lumo-styles/color.html">
-<link rel="import" href="../../../vaadin-lumo-styles/sizing.html">
-<link rel="import" href="../../../vaadin-lumo-styles/style.html">
-<link rel="import" href="../../../vaadin-lumo-styles/typography.html">
+import '@vaadin/vaadin-lumo-styles/color.js';
+import '@vaadin/vaadin-lumo-styles/sizing.js';
+import '@vaadin/vaadin-lumo-styles/style.js';
+import '@vaadin/vaadin-lumo-styles/typography.js';
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 
-<dom-module id="lumo-tab" theme-for="vaadin-tab">
+const $_documentContainer = html`<dom-module id="lumo-tab" theme-for="vaadin-tab">
   <template>
     <style>
       :host {
@@ -127,8 +128,8 @@
         outline: none;
 
         /*
-          Override the CSS inherited from `lumo-color` and `lumo-typography`.
-          Note: `!important` is needed because of the `:slotted` specificity.
+          Override the CSS inherited from \`lumo-color\` and \`lumo-typography\`.
+          Note: \`!important\` is needed because of the \`:slotted\` specificity.
         */
         text-decoration: none !important;
         color: inherit !important;
@@ -225,4 +226,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

@@ -1,5 +1,8 @@
-<dom-module id="tabs-lumo-theme-demos">
-  <template>
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+class TabsLumoThemeDemos extends DemoReadyEventEmitter(TabsDemo(PolymerElement)) {
+  static get template() {
+    return html`
     <style include="vaadin-component-demo-shared-styles">
       :host {
         display: block;
@@ -7,8 +10,8 @@
     </style>
 
     <h3>Equal width tabs</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-equal-width-tabs'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-equal-width-tabs">
+      <template preserve-content="">
         <vaadin-tabs theme="equal-width-tabs">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two with a longer title</vaadin-tab>
@@ -18,8 +21,8 @@
     </vaadin-demo-snippet>
 
     <h3>Icons</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-icons'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-icons">
+      <template preserve-content="">
         <vaadin-tabs>
           <vaadin-tab>
             <iron-icon icon="lumo:user"></iron-icon>
@@ -89,8 +92,8 @@
     </vaadin-demo-snippet>
 
     <h3>Hide Scroll Buttons</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-hide-scroll-buttons'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-hide-scroll-buttons">
+      <template preserve-content="">
         <vaadin-tabs theme="hide-scroll-buttons">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -112,8 +115,8 @@
     </vaadin-demo-snippet>
 
     <h3>Centered</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-centered'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-centered">
+      <template preserve-content="">
         <vaadin-tabs theme="centered">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -123,8 +126,8 @@
     </vaadin-demo-snippet>
 
     <h3>Small Size</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-small-size'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-small-size">
+      <template preserve-content="">
         <vaadin-tabs theme="small">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -142,8 +145,8 @@
     </vaadin-demo-snippet>
 
     <h3>Minimal</h3>
-    <vaadin-demo-snippet id='tabs-lumo-theme-demos-minimal'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-lumo-theme-demos-minimal">
+      <template preserve-content="">
         <vaadin-tabs theme="minimal">
           <vaadin-tab>Tab one</vaadin-tab>
           <vaadin-tab>Tab two</vaadin-tab>
@@ -159,14 +162,11 @@
         </vaadin-tabs>
       </template>
     </vaadin-demo-snippet>
+`;
+  }
 
-  </template>
-  <script>
-    class TabsLumoThemeDemos extends DemoReadyEventEmitter(TabsDemo(Polymer.Element)) {
-      static get is() {
-        return 'tabs-lumo-theme-demos';
-      }
-    }
-    customElements.define(TabsLumoThemeDemos.is, TabsLumoThemeDemos);
-  </script>
-</dom-module>
+  static get is() {
+    return 'tabs-lumo-theme-demos';
+  }
+}
+customElements.define(TabsLumoThemeDemos.is, TabsLumoThemeDemos);

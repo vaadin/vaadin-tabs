@@ -1,5 +1,8 @@
-<dom-module id="tabs-integration-demos">
-  <template>
+import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+class TabsIntegrationDemos extends DemoReadyEventEmitter(TabsDemo(PolymerElement)) {
+  static get template() {
+    return html`
     <style include="vaadin-component-demo-shared-styles">
       :host {
         display: block;
@@ -7,8 +10,8 @@
     </style>
 
     <h3>Content switcher with iron-pages</h3>
-    <vaadin-demo-snippet id='tabs-integration-demos-integration-iron-pages'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-integration-demos-integration-iron-pages">
+      <template preserve-content="">
         <style>
           page {
             display: flex;
@@ -34,8 +37,8 @@
 
 
     <h3>3rd Party Custom Items</h3>
-    <vaadin-demo-snippet id='tabs-integration-demos-wrapping-custom-items'>
-      <template preserve-content>
+    <vaadin-demo-snippet id="tabs-integration-demos-wrapping-custom-items">
+      <template preserve-content="">
         <style>
           page {
             display: flex;
@@ -46,14 +49,14 @@
         <vaadin-tabs>
           <vaadin-tab>
             <my-custom-item>
-              <img src="https://api.adorable.io/avatars/100/Katie.png" width="100" height="100" alt="" slot="icon"></img>
+              <img src="https://api.adorable.io/avatars/100/Katie.png" width="100" height="100" alt="" slot="icon">
               Katie
               <span slot="badge">cool</span>
             </my-custom-item>
           </vaadin-tab>
           <vaadin-tab>
             <my-custom-item>
-              <img src="https://api.adorable.io/avatars/100/John.png" width="100" height="100" alt="" slot="icon"></img>
+              <img src="https://api.adorable.io/avatars/100/John.png" width="100" height="100" alt="" slot="icon">
               John
               <span slot="badge">friendly</span>
             </my-custom-item>
@@ -64,13 +67,11 @@
         </vaadin-tabs>
       </template>
     </vaadin-demo-snippet>
-  </template>
-  <script>
-    class TabsIntegrationDemos extends DemoReadyEventEmitter(TabsDemo(Polymer.Element)) {
-      static get is() {
-        return 'tabs-integration-demos';
-      }
-    }
-    customElements.define(TabsIntegrationDemos.is, TabsIntegrationDemos);
-  </script>
-</dom-module>
+`;
+  }
+
+  static get is() {
+    return 'tabs-integration-demos';
+  }
+}
+customElements.define(TabsIntegrationDemos.is, TabsIntegrationDemos);

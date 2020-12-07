@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>vaadin-tabs tests</title>
-  <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../vaadin-tab.html">
+  <script src="../../../wct-browser-legacy/browser.js"></script>
+  <script src="../../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script type="module" src="../../../@polymer/test-fixture/test-fixture.js"></script>
+  <script type="module" src="../vaadin-tab.js"></script>
 </head>
 
 <body>
@@ -18,30 +18,32 @@
     </template>
   </test-fixture>
 
-  <script>
-    describe('vaadin-tab', () => {
-      var item;
+  <script type="module">
+import '@polymer/test-fixture/test-fixture.js';
+import '../vaadin-tab.js';
+describe('vaadin-tab', () => {
+  var item;
 
-      beforeEach(() => item = fixture('navItem'));
+  beforeEach(() => item = fixture('navItem'));
 
-      it('should have a correct localName', () => {
-        expect(item.localName).to.be.equal('vaadin-tab');
-      });
+  it('should have a correct localName', () => {
+    expect(item.localName).to.be.equal('vaadin-tab');
+  });
 
-      it('should have a correct role', () => {
-        expect(item.getAttribute('role')).to.be.equal('tab');
-      });
+  it('should have a correct role', () => {
+    expect(item.getAttribute('role')).to.be.equal('tab');
+  });
 
-      it('should have an unnamed slot for content', () => {
-        const slot = item.root.querySelector('slot:not([name])');
-        const content = slot.assignedNodes()[0];
-        expect(content.nodeType).to.be.equal(3);
-        expect(content.textContent.trim()).to.be.equal('text-content');
-      });
+  it('should have an unnamed slot for content', () => {
+    const slot = item.root.querySelector('slot:not([name])');
+    const content = slot.assignedNodes()[0];
+    expect(content.nodeType).to.be.equal(3);
+    expect(content.textContent.trim()).to.be.equal('text-content');
+  });
 
-      it('should extend vaadin-item-mixin', () => {
-        expect(item._hasVaadinItemMixin).to.be.true;
-      });
-    });
-  </script>
+  it('should extend vaadin-item-mixin', () => {
+    expect(item._hasVaadinItemMixin).to.be.true;
+  });
+});
+</script>
 </body>
