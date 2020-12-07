@@ -46,7 +46,7 @@ const safari10 = /Apple.* Version\/(9|10)/.test(navigator.userAgent);
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * @extends PolymerElement
+ * @extends HTMLElement
  * @mixes ElementMixin
  * @mixes ListMixin
  * @mixes ThemableMixin
