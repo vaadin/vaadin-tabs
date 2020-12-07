@@ -153,14 +153,7 @@ registerStyles(
 
     :host([theme~='minimal']) {
       box-shadow: none;
-      /* This doesn't work with ShadyCSS */
       --_lumo-tab-marker-display: none;
-    }
-
-    /* Workaround for the above ShadyCSS issue */
-    :host([theme~='minimal']) [part='tabs'] ::slotted(vaadin-tab[selected])::before,
-    :host([theme~='minimal']) [part='tabs'] ::slotted(vaadin-tab[selected])::after {
-      display: none;
     }
 
     /* Hide-scroll-buttons */
