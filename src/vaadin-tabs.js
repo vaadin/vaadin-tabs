@@ -13,7 +13,6 @@ import './vaadin-tab.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-const safari10 = /Apple.* Version\/(9|10)/.test(navigator.userAgent);
 
 /**
  * `<vaadin-tabs>` is a Web Component for easy switching between different views.
@@ -239,22 +238,6 @@ class TabsElement extends
     }
 
     overflow ? this.setAttribute('overflow', overflow.trim()) : this.removeAttribute('overflow');
-
-    this._repaintShadowNodesHack();
-  }
-
-  /** @private */
-  _repaintShadowNodesHack() {
-    // Safari 10 has an issue with repainting shadow root element styles when a host attribute changes.
-    // Need this workaround (toggle any inline css property on and off) until the issue gets fixed.
-    /* istanbul ignore if */
-    if (safari10 && this.root) {
-      const WEBKIT_PROPERTY = '-webkit-backface-visibility';
-      this.root.querySelectorAll('*').forEach(el => {
-        el.style[WEBKIT_PROPERTY] = 'visible';
-        el.style[WEBKIT_PROPERTY] = '';
-      });
-    }
   }
 }
 
