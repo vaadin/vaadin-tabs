@@ -171,3 +171,27 @@ describe('tabs', () => {
     });
   });
 });
+
+describe('flex child tabs', () => {
+  let wrapper, tabs;
+
+  beforeEach(() => {
+    wrapper = fixtureSync(`
+      <div style="display: flex; width: 400px;">
+        <vaadin-tabs>
+          <vaadin-tab>Foo</vaadin-tab>
+          <vaadin-tab>Bar</vaadin-tab>
+        </vaadin-tabs>
+      </div>
+    `);
+    tabs = wrapper.querySelector('vaadin-tabs');
+  });
+
+  it('should have width above zero', () => {
+    expect(tabs.offsetWidth).to.be.above(0);
+  });
+
+  it('should not scroll', () => {
+    expect(tabs.$.scroll.scrollWidth).to.be.equal(tabs.$.scroll.offsetWidth);
+  });
+});

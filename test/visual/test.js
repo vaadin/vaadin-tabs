@@ -16,13 +16,6 @@ describe('vaadin-tabs', () => {
         .assertView(`${theme}-vertical-tabs`, locator);
     });
 
-    it(`${theme}-flex-child-tabs`, function () {
-      return this.browser
-        .url(`flex-child-tabs.html?theme=${theme}`)
-        .waitForVisible(locator, 15000)
-        .assertView(`${theme}-flex-child-tabs`, locator);
-    });
-
     ['ltr', 'rtl'].forEach((dir) => {
       it(`${theme}-scrollable-tabs-${dir}`, function () {
         return this.browser
