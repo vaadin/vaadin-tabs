@@ -37,9 +37,7 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
  */
 class TabElement extends ElementMixin(ThemableMixin(ItemMixin(PolymerElement))) {
   static get template() {
-    return html`
-    <slot></slot>
-`;
+    return html`<slot></slot>`;
   }
 
   static get is() {

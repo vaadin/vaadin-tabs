@@ -48,99 +48,97 @@ import './vaadin-tab.js';
  * @mixes ListMixin
  * @mixes ThemableMixin
  */
-class TabsElement extends
-  ElementMixin(
-    ListMixin(
-      ThemableMixin(
-        mixinBehaviors([IronResizableBehavior], PolymerElement)))) {
+class TabsElement extends ElementMixin(
+  ListMixin(ThemableMixin(mixinBehaviors([IronResizableBehavior], PolymerElement)))
+) {
   static get template() {
     return html`
-    <style>
-      :host {
-        display: flex;
-        align-items: center;
-      }
+      <style>
+        :host {
+          display: flex;
+          align-items: center;
+        }
 
-      :host([hidden]) {
-        display: none !important;
-      }
+        :host([hidden]) {
+          display: none !important;
+        }
 
-      :host([orientation="vertical"]) {
-        display: block;
-      }
+        :host([orientation='vertical']) {
+          display: block;
+        }
 
-      :host([orientation="horizontal"]) [part="tabs"] {
-        flex-grow: 1;
-        display: flex;
-        align-self: stretch;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: none;
-      }
+        :host([orientation='horizontal']) [part='tabs'] {
+          flex-grow: 1;
+          display: flex;
+          align-self: stretch;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          -ms-overflow-style: none;
+        }
 
-      /* This seems more future-proof than \`overflow: -moz-scrollbars-none\` which is marked obsolete
+        /* This seems more future-proof than \`overflow: -moz-scrollbars-none\` which is marked obsolete
          and is no longer guaranteed to work:
          https://developer.mozilla.org/en-US/docs/Web/CSS/overflow#Mozilla_Extensions */
-      @-moz-document url-prefix() {
-        :host([orientation="horizontal"]) [part="tabs"] {
-          overflow: hidden;
+        @-moz-document url-prefix() {
+          :host([orientation='horizontal']) [part='tabs'] {
+            overflow: hidden;
+          }
         }
-      }
 
-      :host([orientation="horizontal"]) [part="tabs"]::-webkit-scrollbar {
-        display: none;
-      }
+        :host([orientation='horizontal']) [part='tabs']::-webkit-scrollbar {
+          display: none;
+        }
 
-      :host([orientation="vertical"]) [part="tabs"] {
-        height: 100%;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-      }
+        :host([orientation='vertical']) [part='tabs'] {
+          height: 100%;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+        }
 
-      [part="back-button"],
-      [part="forward-button"] {
-        pointer-events: none;
-        opacity: 0;
-        cursor: default;
-      }
+        [part='back-button'],
+        [part='forward-button'] {
+          pointer-events: none;
+          opacity: 0;
+          cursor: default;
+        }
 
-      :host([overflow~="start"]) [part="back-button"],
-      :host([overflow~="end"]) [part="forward-button"] {
-        pointer-events: auto;
-        opacity: 1;
-      }
+        :host([overflow~='start']) [part='back-button'],
+        :host([overflow~='end']) [part='forward-button'] {
+          pointer-events: auto;
+          opacity: 1;
+        }
 
-      [part="back-button"]::after {
-        content: '◀';
-      }
+        [part='back-button']::after {
+          content: '◀';
+        }
 
-      [part="forward-button"]::after {
-        content: '▶';
-      }
+        [part='forward-button']::after {
+          content: '▶';
+        }
 
-      :host([orientation="vertical"]) [part="back-button"],
-      :host([orientation="vertical"]) [part="forward-button"] {
-        display: none;
-      }
+        :host([orientation='vertical']) [part='back-button'],
+        :host([orientation='vertical']) [part='forward-button'] {
+          display: none;
+        }
 
-      /* RTL specific styles */
+        /* RTL specific styles */
 
-      :host([dir="rtl"]) [part="back-button"]::after {
-        content: '▶';
-      }
+        :host([dir='rtl']) [part='back-button']::after {
+          content: '▶';
+        }
 
-      :host([dir="rtl"]) [part="forward-button"]::after {
-        content: '◀';
-      }
-    </style>
-    <div on-click="_scrollBack" part="back-button"></div>
+        :host([dir='rtl']) [part='forward-button']::after {
+          content: '◀';
+        }
+      </style>
+      <div on-click="_scrollBack" part="back-button"></div>
 
-    <div id="scroll" part="tabs">
-      <slot></slot>
-    </div>
+      <div id="scroll" part="tabs">
+        <slot></slot>
+      </div>
 
-    <div on-click="_scrollForward" part="forward-button"></div>
-`;
+      <div on-click="_scrollForward" part="forward-button"></div>
+    `;
   }
 
   static get is() {
@@ -221,7 +219,9 @@ class TabsElement extends
 
   /** @private */
   _updateOverflow() {
-    const scrollPosition = this._vertical ? this._scrollerElement.scrollTop : this.__getNormalizedScrollLeft(this._scrollerElement);
+    const scrollPosition = this._vertical
+      ? this._scrollerElement.scrollTop
+      : this.__getNormalizedScrollLeft(this._scrollerElement);
     let scrollSize = this._vertical ? this._scrollerElement.scrollHeight : this._scrollerElement.scrollWidth;
     // In Edge we need to adjust the size in 1 pixel
     scrollSize -= 1;
@@ -230,7 +230,7 @@ class TabsElement extends
     overflow += scrollPosition + this._scrollOffset < scrollSize ? ' end' : '';
 
     if (this.__direction == 1) {
-      overflow = overflow.replace(/start|end/gi, matched => {
+      overflow = overflow.replace(/start|end/gi, (matched) => {
         return matched === 'start' ? 'end' : 'start';
       });
     }

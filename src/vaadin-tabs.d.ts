@@ -1,10 +1,10 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ListMixin} from '@vaadin/vaadin-list-mixin/vaadin-list-mixin.js';
+import { ListMixin } from '@vaadin/vaadin-list-mixin/vaadin-list-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
-import {ListOrientation} from '@vaadin/vaadin-list-mixin/interfaces';
+import { ListOrientation } from '@vaadin/vaadin-list-mixin/interfaces';
 
 /**
  * `<vaadin-tabs>` is a Web Component for easy switching between different views.
@@ -37,17 +37,13 @@ import {ListOrientation} from '@vaadin/vaadin-list-mixin/interfaces';
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
-declare class TabsElement extends
-  ElementMixin(
-  ListMixin(
-  ThemableMixin(
-  HTMLElement))) {
+declare class TabsElement extends ElementMixin(ListMixin(ThemableMixin(HTMLElement))) {
   readonly _scrollerElement: HTMLElement;
 
   /**
    * The index of the selected tab.
    */
-  selected: number|null|undefined;
+  selected: number | null | undefined;
 
   /**
    * Set tabs disposition. Possible values are `horizontal|vertical`
@@ -58,10 +54,9 @@ declare class TabsElement extends
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-tabs": TabsElement;
+    'vaadin-tabs': TabsElement;
   }
 }
 
-export {TabsElement};
+export { TabsElement };

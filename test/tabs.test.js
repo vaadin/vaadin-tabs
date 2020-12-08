@@ -120,7 +120,9 @@ describe('tabs', () => {
             let pixels = 0;
             Object.defineProperty(scroll, orientation == 'horizontal' ? 'scrollLeft' : 'scrollTop', {
               get: () => pixels,
-              set: (v) => (pixels = v)
+              set: (v) => {
+                pixels = v;
+              }
             });
 
             // Simulate over-scrolling

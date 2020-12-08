@@ -1,8 +1,8 @@
-import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
+import { ThemableMixin } from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import {ItemMixin} from '@vaadin/vaadin-item/src/vaadin-item-mixin.js';
+import { ItemMixin } from '@vaadin/vaadin-item/src/vaadin-item-mixin.js';
 
-import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
+import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js';
 
 /**
  * `<vaadin-tab>` is a Web Component providing an accessible and customizable tab.
@@ -26,19 +26,14 @@ import {ElementMixin} from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.js
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  */
-declare class TabElement extends
-  ElementMixin(
-  ThemableMixin(
-  ItemMixin(
-  HTMLElement))) {
+declare class TabElement extends ElementMixin(ThemableMixin(ItemMixin(HTMLElement))) {
   _onKeyup(event: KeyboardEvent): void;
 }
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "vaadin-tab": TabElement;
+    'vaadin-tab': TabElement;
   }
 }
 
-export {TabElement};
+export { TabElement };
