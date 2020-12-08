@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Equal width tabs visual tests</title>
-  </head>
 
-  <body>
-    <style>
-      #tabs-tests {
-        width: 800px;
-      }
-    </style>
+<head>
+  <meta charset="UTF-8" />
+  <title>Equal width tabs visual tests</title>
+</head>
 
-    <div id="tabs-tests">
-      <vaadin-tabs theme="equal-width-tabs">
-        <vaadin-tab>Tab one</vaadin-tab>
-        <vaadin-tab>Tab two with a longer title</vaadin-tab>
-        <vaadin-tab>Tab three</vaadin-tab>
-      </vaadin-tabs>
-    </div>
+<body>
+  <style>
+    #tabs-tests {
+      width: 800px;
+    }
+  </style>
 
-    <script type="module">
-      import '../../theme/lumo/vaadin-tabs.js';
+  <div id="tabs-tests">
+    <vaadin-tabs theme="equal-width-tabs">
+      <vaadin-tab>Tab one</vaadin-tab>
+      <vaadin-tab>Tab two with a longer title</vaadin-tab>
+      <vaadin-tab>Tab three</vaadin-tab>
+    </vaadin-tabs>
+  </div>
 
-      window.requestAnimationFrame(() => {
-        document.getElementById('tabs-tests').dataset.ready = true;
-      });
-    </script>
-  </body>
-</html>
+  <script type="module">
+    import '../../theme/lumo/vaadin-tabs.js';
+
+    window.requestAnimationFrame(() => {
+      document.getElementById('tabs-tests').dataset.ready = true;
+    });
+  </script>
+</body>
