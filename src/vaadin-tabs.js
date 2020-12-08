@@ -222,9 +222,7 @@ class TabsElement extends ElementMixin(
     const scrollPosition = this._vertical
       ? this._scrollerElement.scrollTop
       : this.__getNormalizedScrollLeft(this._scrollerElement);
-    let scrollSize = this._vertical ? this._scrollerElement.scrollHeight : this._scrollerElement.scrollWidth;
-    // In Edge we need to adjust the size in 1 pixel
-    scrollSize -= 1;
+    const scrollSize = this._vertical ? this._scrollerElement.scrollHeight : this._scrollerElement.scrollWidth;
 
     let overflow = scrollPosition > 0 ? 'start' : '';
     overflow += scrollPosition + this._scrollOffset < scrollSize ? ' end' : '';
