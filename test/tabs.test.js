@@ -63,10 +63,7 @@ describe('tabs', () => {
   ['horizontal', 'vertical'].forEach((orientation) => {
     ['ltr', 'rtl'].forEach((direction) => {
       describe(`Overflow ${orientation} ${direction}`, () => {
-        let horizontalRtl;
-
         beforeEach(() => {
-          horizontalRtl = orientation === 'horizontal' && direction === 'rtl';
           tabs.orientation = orientation;
           document.documentElement.setAttribute('dir', direction);
         });
@@ -82,6 +79,8 @@ describe('tabs', () => {
         });
 
         describe('small viewport', () => {
+          const horizontalRtl = orientation === 'horizontal' && direction === 'rtl';
+
           beforeEach((done) => {
             if (orientation === 'horizontal') {
               tabs.style.width = '200px';
@@ -106,7 +105,7 @@ describe('tabs', () => {
           });
 
           // TODO: passes locally but fails in GitHub Actions due to 1px difference.
-          const chrome = window.chrome || /HeadlessChrome/.test(window.navigator.userAgent);
+          const chrome = /HeadlessChrome/.test(navigator.userAgent);
           (horizontalRtl && chrome ? it.skip : it)(
             `when orientation=${orientation} should have overflow="start" if scroll is at the end`,
             (done) => {
