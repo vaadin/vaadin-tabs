@@ -28,14 +28,14 @@ describe('vaadin-tabs', () => {
         return this.browser
           .url(`scrollable-tabs.html?theme=${theme}&dir=${dir}`)
           .waitForVisible(locator, 15000)
-          .assertView(`${theme}-scrollable-tabs`, locator);
+          .assertView(`${theme}-scrollable-tabs-${dir}`, locator);
       });
 
       it(`${theme}-anchor-tabs-${dir}`, function () {
         return this.browser
           .url(`anchor-tabs.html?theme=${theme}&dir=${dir}`)
           .waitForVisible(locator, 15000)
-          .assertView(`${theme}-anchor-tabs`, locator);
+          .assertView(`${theme}-anchor-tabs-${dir}`, locator);
       });
     });
   });
