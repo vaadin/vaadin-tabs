@@ -32,11 +32,4 @@ describe('vaadin-tabs', () => {
       });
     });
   });
-
-  it('lumo-equal-width-tabs', function () {
-    return this.browser
-      .url('equal-width-tabs-lumo.html')
-      .waitForVisible(locator, 15000)
-      .assertView('lumo-equal-width-tabs', locator);
-  });
 });
