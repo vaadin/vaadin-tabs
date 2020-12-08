@@ -65,16 +65,13 @@ describe('tabs', () => {
       describe(`Overflow ${orientation} ${direction}`, () => {
         let horizontalRtl;
 
-        before(() => {
-          document.documentElement.setAttribute('dir', direction);
-        });
-
         beforeEach(() => {
           horizontalRtl = orientation === 'horizontal' && direction === 'rtl';
           tabs.orientation = orientation;
+          document.documentElement.setAttribute('dir', direction);
         });
 
-        after(() => {
+        afterEach(() => {
           document.documentElement.removeAttribute('dir');
         });
 
