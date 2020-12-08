@@ -7,6 +7,24 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin/vaadin-element-mixin.
 import { ListOrientation } from '@vaadin/vaadin-list-mixin/interfaces';
 
 /**
+ * Fired when the `items` property changes.
+ */
+export type TabsItemsChanged = CustomEvent<{ value: Array<Element> }>;
+
+/**
+ * Fired when the `selected` property changes.
+ */
+export type TabsSelectedChanged = CustomEvent<{ value: number }>;
+
+export interface TabsElementEventMap {
+  'items-changed': TabsItemsChanged;
+
+  'selected-changed': TabsSelectedChanged;
+}
+
+export interface TabsEventMap extends HTMLElementEventMap, TabsElementEventMap {}
+
+/**
  * `<vaadin-tabs>` is a Web Component for easy switching between different views.
  *
  * ```
@@ -51,6 +69,18 @@ declare class TabsElement extends ElementMixin(ListMixin(ThemableMixin(HTMLEleme
   orientation: ListOrientation;
 
   readonly _scrollOffset: number;
+
+  addEventListener<K extends keyof TabsEventMap>(
+    type: K,
+    listener: (this: TabsElement, ev: TabsEventMap[K]) => void,
+    options?: boolean | AddEventListenerOptions
+  ): void;
+
+  removeEventListener<K extends keyof TabsEventMap>(
+    type: K,
+    listener: (this: TabsElement, ev: TabsEventMap[K]) => void,
+    options?: boolean | EventListenerOptions
+  ): void;
 }
 
 declare global {
