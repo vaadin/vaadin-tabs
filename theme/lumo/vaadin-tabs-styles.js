@@ -75,8 +75,6 @@ registerStyles(
       --_lumo-tabs-overflow-mask-image: none;
       -webkit-mask-image: var(--_lumo-tabs-overflow-mask-image);
       mask-image: var(--_lumo-tabs-overflow-mask-image);
-      /* For IE11 */
-      min-height: var(--lumo-size-l);
     }
 
     /* Horizontal tabs overflow */
