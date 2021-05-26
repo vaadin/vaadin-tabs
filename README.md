@@ -10,12 +10,14 @@
 
 # &lt;vaadin-tabs&gt;
 
+> ⚠️ Starting from Vaadin 20, the source code and issues for this component are migrated to the [`vaadin/web-components`](https://github.com/vaadin/web-components/tree/master/packages/vaadin-tabs) monorepository.
+> This repository contains the source code and releases of `<vaadin-tabs>` for the Vaadin versions 10 to 19.
+
+[&lt;vaadin-tabs&gt;](https://vaadin.com/components/vaadin-tabs) is a Web Component providing item navigation part of the [Vaadin components](https://vaadin.com/components). It is designed for menu and tab components.
+
 [Live Demo ↗](https://vaadin.com/components/vaadin-tabs/html-examples)
 |
 [API documentation ↗](https://vaadin.com/components/vaadin-tabs/html-api)
-
-
-[&lt;vaadin-tabs&gt;](https://vaadin.com/components/vaadin-tabs) is a Web Component providing item navigation part of the [Vaadin components](https://vaadin.com/components). It is designed for menu and tab components.
 
 <!--
 ```
@@ -85,15 +87,15 @@ To use the Material theme, import the correspondent file from the `theme/materia
 
 - The components with the Lumo theme:
 
-  `theme/lumo/vaadin-tab.html`  
+  `theme/lumo/vaadin-tab.html`
   `theme/lumo/vaadin-tabs.html`
 
 - The components with the Material theme:
 
-  `theme/material/vaadin-tab.html`  
+  `theme/material/vaadin-tab.html`
   `theme/material/vaadin-tabs.html`
 
-- Alias for `theme/lumo/vaadin-tab.html`   
+- Alias for `theme/lumo/vaadin-tab.html`
   `theme/lumo/vaadin-tabs.html`:
 
   `vaadin-tab.html`
