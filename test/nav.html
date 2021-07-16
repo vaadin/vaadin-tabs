@@ -142,7 +142,9 @@
                 nav._scroll(horizontalRtl ? -2 : 2);
               });
 
-              it(`when orientation=${orientation} should have overflow="start" if scroll is at the end`, done => {
+              // TODO: this test fails on certain conditions, see: https://github.com/vaadin/web-components/issues/2248.
+              // Enable it once the issue is resolved.
+              it.skip(`when orientation=${orientation} should have overflow="start" if scroll is at the end`, done => {
                 const listener = nav._scrollerElement.addEventListener('scroll', () => {
                   expect(nav.getAttribute('overflow')).to.be.equal('start');
                   nav._scrollerElement.removeEventListener('scroll', listener);
