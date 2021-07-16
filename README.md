@@ -1,13 +1,3 @@
-[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-tabs)](https://www.npmjs.com/package/@vaadin/vaadin-tabs)
-[![Bower version](https://badgen.net/github/release/vaadin/vaadin-tabs)](https://github.com/vaadin/vaadin-tabs/releases)
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/vaadin/vaadin-tabs)
-[![Build Status](https://travis-ci.org/vaadin/vaadin-tabs.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-tabs)
-[![Coverage Status](https://coveralls.io/repos/github/vaadin/vaadin-tabs/badge.svg?branch=master)](https://coveralls.io/github/vaadin/vaadin-tabs?branch=master)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-tabs)
-[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/vaadinvaadin-tabs.svg)](https://vaadin.com/directory/component/vaadinvaadin-tabs)
-
 # &lt;vaadin-tabs&gt;
 
 > ⚠️ Starting from Vaadin 20, the source code and issues for this component are migrated to the [`vaadin/web-components`](https://github.com/vaadin/web-components/tree/master/packages/vaadin-tabs) monorepository.
@@ -18,6 +8,11 @@
 [Live Demo ↗](https://vaadin.com/components/vaadin-tabs/html-examples)
 |
 [API documentation ↗](https://vaadin.com/components/vaadin-tabs/html-api)
+
+[![npm version](https://badgen.net/npm/v/@vaadin/vaadin-tabs)](https://www.npmjs.com/package/@vaadin/vaadin-tabs)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/vaadin/vaadin-tabs)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadinvaadin-tabs)
+[![Discord](https://img.shields.io/discord/732335336448852018?label=discord)](https://discord.gg/PHmkCKC)
 
 <!--
 ```
